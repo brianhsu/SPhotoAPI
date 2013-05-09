@@ -19,6 +19,6 @@ object ImgUrPhoto {
     link = (item \ "link").text
   )
 
-  def fromXML(items: NodeSeq) = (items \\ "item").map(apply)
+  def fromXML(items: NodeSeq) = (items \\ "item").map(apply).toList
 }
 

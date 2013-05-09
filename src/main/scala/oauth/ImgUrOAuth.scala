@@ -15,22 +15,26 @@ import scala.xml.Node
 import scala.xml.XML
 
 /**
+ *  Used for Unit-test only.
+ */
+private[sphotoapi] trait MockImgUrOAuth extends ImgUrOAuth
+
+/**
  *  ImgUr OAuth Helper object
  *
  *  @param  imgUrAPIPrefix    ImgUr API endpoint prefix
- *  @param  service           Scribe OAuth service
  *  @param  appKey            OAuth Cleint App Key
  *  @param  appSecret         OAuth Client App Secret
+ *  @param  service           Scribe OAuth service
  *  @param  accessToken       The access token from ImgUr API
  *  @param  refreshToken      The refresh token from ImgUr API
  *  @param  expireAt          When will access token will be expired.
  */
-class ImgUrOAuth(val imgUrAPIPrefix: String,
-                 val service: OAuthService, 
-                 appKey: String, appSecret: String,
-                 private var accessToken: Option[Token] = None, 
-                 private var refreshToken: Option[String] = None,
-                 private var expireAt: Date)
+class ImgUrOAuth(imgUrAPIPrefix: String, appKey: String, appSecret: String,
+                 private[sphotoapi] val service: OAuthService,
+                 private[sphotoapi] var accessToken: Option[Token] = None, 
+                 private[sphotoapi] var refreshToken: Option[String] = None,
+                 private[sphotoapi] var expireAt: Date = new Date)
 {
 
 
@@ -88,9 +92,8 @@ class ImgUrOAuth(val imgUrAPIPrefix: String,
       val rawResponse = request.send.getBody
       val jsonResponse = JsonParser.parse(rawResponse)
 
-      val JString(newAccessToken) = jsonResponse \ "access_token"
-      val JString(newRefreshToken) = jsonResponse \ "refresh_token"
-      val JInt(expiresInSecond) = jsonResponse \ "expires_in"
+      val (newAccessToken, newRefreshToken, expiresInSecond) = 
+        ImgUrOAuth.parseTokenJSON(jsonResponse)
       
       this.accessToken = Some(new Token(newAccessToken, "", rawResponse))
       this.refreshToken = Some(newRefreshToken)
@@ -109,7 +112,7 @@ class ImgUrOAuth(val imgUrAPIPrefix: String,
   private def parseXML(rawContent: String): Node = 
   {
     val xmlNode = XML.loadString(rawContent)
-    val errorMessage = xmlNode \\ "error" \ "message"
+    val errorMessage = xmlNode \\ "error"
 
     if (!errorMessage.isEmpty) {
       throw new OAuthException(errorMessage.text, rawContent)
@@ -160,4 +163,22 @@ class ImgUrOAuth(val imgUrAPIPrefix: String,
   }
 
 }
-                 
+
+object ImgUrOAuth {
+
+  /**
+   *  Parse token returned by ImgUr API.
+   *
+   *  @param  json    The JSON represent of ImgUr token response
+   *  @return         (accessToken, refreshToken, expiresInSecond)
+   */
+  def parseTokenJSON(json: JValue): (String, String, Int)  = {
+    val JString(accessToken)  = json \ "access_token"
+    val JString(refreshToken) = json \ "refresh_token"
+    val JInt(expiresInSecond) = json \ "expires_in"
+
+    (accessToken, refreshToken, expiresInSecond.toInt)
+  }
+
+}
+

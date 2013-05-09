@@ -1,4 +1,4 @@
-package org.bone.sphoto.scribe
+package org.bone.sphotoapi.scribe
 
 import org.scribe.builder.api.DefaultApi20
 
@@ -17,11 +17,12 @@ class ImgUr3Service(api: DefaultApi20,
 
     val request = new OAuthRequest(api.getAccessTokenVerb, api.getAccessTokenEndpoint)
     val grantType = if (isOOB(config)) "pin" else "authorization_code"
+    val codeName = if(isOOB(config)) "pin" else "code"
 
     request.addBodyParameter(OAuthConstants.CLIENT_ID, config.getApiKey)
     request.addBodyParameter(OAuthConstants.CLIENT_SECRET, config.getApiSecret)
     request.addBodyParameter("grant_type", grantType)
-    request.addBodyParameter("pin", verifier.getValue);
+    request.addBodyParameter(codeName, verifier.getValue);
 
     val response = request.send()
 
