@@ -176,8 +176,7 @@ object ImgUrAPI {
    *  @return                     ImgUrAPI object
    */
   def withRefreshToken(appKey: String, appSecret: String, 
-                       refreshToken: String,
-                       endPointPrefix: String = "https://api.imgur.com/"): ImgUrAPI = 
+                       refreshToken: String): ImgUrAPI = 
   {
     val service = (new ServiceBuilder).
                     provider(classOf[ImgUr3Api]).
