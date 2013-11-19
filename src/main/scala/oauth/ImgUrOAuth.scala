@@ -19,6 +19,68 @@ import scala.xml.XML
  */
 private[sphotoapi] trait MockImgUrOAuth extends ImgUrOAuth
 
+class PicasaOAuth(imgUrAPIPrefix: String, appKey: String, appSecret: String,
+                 private[sphotoapi] val service: OAuthService,
+                 private[sphotoapi] var accessToken: Option[Token])
+{
+  /**
+   *  Send Request and Parse Response to JSON / XML
+   *  
+   *  @param    url       The API endpoint URL
+   *  @param    verb      The HTTP request method
+   *  @param    params    The parameters to API method
+   *  @return             The XML node or JSON object if successfully called API.
+   */
+  def sendRequest(url: String, verb: Verb, 
+                  params: (String, String)*): Try[Node] = 
+  {
+    
+    Try {
+
+      val request = buildRequest(url, verb, params: _*)
+      
+      service.signRequest(accessToken getOrElse null, request)
+
+      val response = request.send
+      val contentType = response.getHeader("Content-Type")
+      val responseContent = response.getBody
+
+      try {
+        XML.loadString(responseContent)
+      } catch {
+        case e: Exception => throw new Exception(responseContent)
+      }
+
+    }
+
+  }
+
+  /**
+   *  Create OAuthReqeust object and attatch params to it.
+   *
+   *  @param    url         API Endpoint.
+   *  @param    method      HTTP method type.
+   *  @param    params      Parameters to send.
+   */
+  private def buildRequest(url: String, method: Verb, 
+                           params: (String, String)*): OAuthRequest = 
+  {
+
+    val fullURL = if(url.startsWith("http")) url else imgUrAPIPrefix + url
+    val request = new OAuthRequest(method, fullURL)
+
+    if (method == Verb.POST) {
+      params.foreach { case(key, value) => request.addBodyParameter(key, value) }
+    } else if (method == Verb.GET) {
+      params.foreach { case(key, value) => request.addQuerystringParameter(key, value) }
+    }
+
+    request
+  }
+
+}
+
+
 /**
  *  ImgUr OAuth Helper object
  *
