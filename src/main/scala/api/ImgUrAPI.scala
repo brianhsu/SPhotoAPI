@@ -15,130 +15,6 @@ import net.liftweb.json.JsonParser
 import scala.util.Try
 import java.util.Date
 
-class PicasaAPI private(imgUrOAuth: PicasaOAuth) 
-{
-  /**
-   *  Get authorization URL
-   *
-   *  @return   The ImgUr authorization page if success.
-   */
-  def getAuthorizationURL: Try[String] = Try(imgUrOAuth.service.getAuthorizationUrl(null))
-
-  /**
-   *  Authorize ImgUr
-   *
-   *  @param  verifyCode  The pin / code returned by ImgUr
-   *  @return             Success[Unit] if success.
-   */
-  def authorize(verifyCode: String): Try[Unit] = Try {
-    
-    val currentTime = System.currentTimeMillis
-    val verifier = new Verifier(verifyCode)
-    val accessToken = imgUrOAuth.service.getAccessToken(null, verifier)
-
-    imgUrOAuth.accessToken = Some(accessToken)
-  }
-
-  /**
-   *  Get Photos From Album
-   *
-   *  @param    albumID     The ID of album
-   *  @return               Success[List[Photo]] if everything is fine.
-   */
-  def getPhotos(albumID: String, userID: String = "default", imageMaxSize: String = "d"): Try[List[Photo]] = {
-
-    val endPoint = s"user/$userID/albumid/$albumID?imgmax=$imageMaxSize"
-
-    imgUrOAuth.sendRequest(endPoint, Verb.GET).map { response =>
-      PicasaPhoto.fromXML(response)
-    }
-
-  }
-
-  /**
-   *  Get User's Album list
-   *
-   *  @param    username    username, "me" if you want to fetch current user's alubm.
-   *  @return               Success[List[Album]] if everything is fine.
-   */
-  def getAlbums(userID: String = "default"): Try[List[Album]] = {
-
-    val endPoint = s"user/$userID"
-
-    imgUrOAuth.sendRequest(endPoint, Verb.GET).map { response =>
-      PicasaAlbum.fromXML(response)
-    }
-  }
-
-}
-
-/**
- *  ImgUr API
- *
- */
-object PicasaAPI {
-
-  /**
-   *  Create ImgUr API that verify by user enter PIN directly.
-   *
-   *  @param    appKey            The app key you got from ImgUr.
-   *  @param    appSecret         The app secret you got from ImgUr.
-   *  @param    endPointPrefix    The app endpoint prefix
-   *  @return                     ImgUrAPI object
-   */
-  def apply(appKey: String, appSecret: String, 
-            endPointPrefix: String = "https://picasaweb.google.com/data/feed/api/"): PicasaAPI = 
-  {
-
-    val service = (new ServiceBuilder).
-                    provider(classOf[Google2Api]).
-                    apiKey(appKey).
-                    apiSecret(appSecret).
-                    callback("urn:ietf:wg:oauth:2.0:oob").
-                    scope("https://picasaweb.google.com/data/").build
-
-    val oauth = new PicasaOAuth(
-      endPointPrefix, appKey, appSecret, service,
-      accessToken = None
-    )
-
-    new PicasaAPI(oauth)
-  }
-
-  /**
-   *  Create ImgUr API that has callback.
-   *
-   *  @param    appKey            The app key you got from ImgUr.
-   *  @param    appSecret         The app secret you got from ImgUr.
-   *  @param    callback          The callback URL
-   *  @param    endPointPrefix    The app endpoint prefix
-   *  @return                     ImgUrAPI object
-   */
-  def withCallback(appKey: String, appSecret: String, 
-                   callback: String,
-                   endPointPrefix: String = "https://picasaweb.google.com/data/feed/api/"): PicasaAPI = 
-  {
-
-    val service = (new ServiceBuilder).
-                    provider(classOf[Google2Api]).
-                    apiKey(appKey).
-                    apiSecret(appSecret).
-                    scope("https://picasaweb.google.com/data/").
-                    callback(callback).build
-
-    val oauth = new PicasaOAuth(
-      endPointPrefix, appKey, appSecret, service,
-      accessToken = None
-    )
-
-    new PicasaAPI(oauth)
-
-  }
-
-}
-
-
-
 /**
  *  ImgUr API
  *
@@ -240,8 +116,7 @@ object ImgUrAPI {
    *  @param    endPointPrefix    The app endpoint prefix
    *  @return                     ImgUrAPI object
    */
-  def apply(appKey: String, appSecret: String, 
-            endPointPrefix: String = "https://api.imgur.com/"): ImgUrAPI = 
+  def apply(appKey: String, appSecret: String): ImgUrAPI = 
   {
 
     val service = (new ServiceBuilder).
@@ -250,7 +125,7 @@ object ImgUrAPI {
                     apiSecret(appSecret).build
 
     val oauth = new ImgUrOAuth(
-      endPointPrefix, appKey, appSecret, service,
+      appKey, appSecret, service,
       accessToken = None,
       refreshToken = None,
       expireAt = new Date
@@ -268,9 +143,7 @@ object ImgUrAPI {
    *  @param    endPointPrefix    The app endpoint prefix
    *  @return                     ImgUrAPI object
    */
-  def withCallback(appKey: String, appSecret: String, 
-                   callback: String,
-                   endPointPrefix: String = "https://api.imgur.com/"): ImgUrAPI = 
+  def withCallback(appKey: String, appSecret: String, callback: String): ImgUrAPI = 
   {
 
     val service = (new ServiceBuilder).
@@ -280,7 +153,7 @@ object ImgUrAPI {
                     callback(callback).build
 
     val oauth = new ImgUrOAuth(
-      endPointPrefix, appKey, appSecret, service,
+      appKey, appSecret, service,
       accessToken = None,
       refreshToken = None,
       expireAt = new Date
@@ -315,7 +188,7 @@ object ImgUrAPI {
                     apiSecret(appSecret).build
 
     val oauth = new ImgUrOAuth(
-      endPointPrefix, appKey, appSecret, service,
+      appKey, appSecret, service,
       accessToken = None,
       refreshToken = Some(refreshToken),
       expireAt = new Date

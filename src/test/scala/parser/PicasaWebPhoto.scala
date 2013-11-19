@@ -7,13 +7,13 @@ import org.scalatest.Matchers
 
 import java.util.Date
 
-class PicasaPhotoSpec extends FunSpec with Matchers {
+class PicasaWebPhotoSpec extends FunSpec with Matchers {
 
-  import PicasaPhotoSpec._
+  import PicasaWebPhotoSpec._
 
-  describe("PicasaPhotoSpec") {
+  describe("PicasaWebPhotoSpec") {
     it ("should parse photo with title XML correctly") {
-      PicasaPhoto(photoWithTitle) shouldBe Photo(
+      PicasaWebPhoto(photoWithTitle) shouldBe Photo(
         id = "5277210049635511490",
         title = Some("SomeTitle"),
         timestamp = new Date(1228696212000L),
@@ -25,7 +25,7 @@ class PicasaPhotoSpec extends FunSpec with Matchers {
     }
 
     it ("should parse photo list XML correctly") {
-      PicasaPhoto.fromXML(photoList) shouldBe List(
+      PicasaWebPhoto.fromXML(photoList) shouldBe List(
         Photo(
           id = "5049938998052398770",
           title = None,
@@ -58,7 +58,7 @@ class PicasaPhotoSpec extends FunSpec with Matchers {
   }
 }
 
-object PicasaPhotoSpec extends FunSpec with Matchers {
+object PicasaWebPhotoSpec extends FunSpec with Matchers {
   val photoWithTitle = 
     <entry xmlns:gphoto="http://schemas.google.com/photos/2007">
       <id> https://picasaweb.google.com/data/entry/api/user/106826117950796832071/albumid/5049936206323655841/photoid/5277210049635511490 </id>

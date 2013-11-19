@@ -8,7 +8,7 @@ import scala.xml.Node
 
 import java.util.Date
 
-object PicasaAlbum {
+object PicasaWebAlbum {
   
   def prefixGPhoto(nodes: NodeSeq) = nodes.filter(_.prefix == "gphoto").text
 

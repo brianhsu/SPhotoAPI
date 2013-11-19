@@ -8,15 +8,15 @@ import org.scalatest.Matchers
 
 import java.util.Date
 
-class PicasaAlbumSpec extends FunSpec with Matchers {
+class PicasaWebAlbumSpec extends FunSpec with Matchers {
 
-  import PicasaAlbumSpec._
+  import PicasaWebAlbumSpec._
 
-  describe("A PicasaAlbum Parser") {
+  describe("A PicasaWebAlbum Parser") {
 
-    it ("should parse public Picasa AlbumXML correctly") {
+    it ("should parse public PicasaWeb AlbumXML correctly") {
 
-      PicasaAlbum(PublicAlbumXML) shouldBe Album(
+      PicasaWebAlbum(PublicAlbumXML) shouldBe Album(
         id = "5910634723613201729",
         title = "SomeTitle",
         description = None,
@@ -28,9 +28,9 @@ class PicasaAlbumSpec extends FunSpec with Matchers {
 
     }
 
-    it ("should parse hidden Picasa AlbumXML correctly") {
+    it ("should parse hidden PicasaWeb AlbumXML correctly") {
 
-      PicasaAlbum(HiddenAlbumXML) shouldBe Album(
+      PicasaWebAlbum(HiddenAlbumXML) shouldBe Album(
         id = "5836947895216307969",
         title = "TestTitle",
         description = Some("TestDescription"),
@@ -42,9 +42,9 @@ class PicasaAlbumSpec extends FunSpec with Matchers {
 
     }
 
-    it ("should parse secret Picasa AlbumXML correctly") {
+    it ("should parse secret PicasaWeb AlbumXML correctly") {
 
-      PicasaAlbum(SecretAlbumXML) shouldBe Album(
+      PicasaWebAlbum(SecretAlbumXML) shouldBe Album(
         id = "5778560919691441265",
         title = "PrivateTest",
         description = None,
@@ -57,7 +57,7 @@ class PicasaAlbumSpec extends FunSpec with Matchers {
     }
 
     it ("should parse album list correctly") {
-      val albums = PicasaAlbum.fromXML(AlbumList)
+      val albums = PicasaWebAlbum.fromXML(AlbumList)
       albums shouldBe List(
         Album(
           id = "5910634723613201729",
@@ -92,7 +92,7 @@ class PicasaAlbumSpec extends FunSpec with Matchers {
   }
 }
 
-object PicasaAlbumSpec {
+object PicasaWebAlbumSpec {
 
   val PublicAlbumXML = 
     <entry>

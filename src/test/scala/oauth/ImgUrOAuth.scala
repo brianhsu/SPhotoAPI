@@ -17,7 +17,6 @@ class ImgUrOAuthSpec extends FunSpec with Matchers with PrivateMethodTester {
   describe("ImgUrOAuth") {
 
     val imgUrOAuth = new ImgUrOAuth(
-      imgUrAPIPrefix = "https://api.imgur.com/", 
       service = null, 
       appKey = null, 
       appSecret = null,
