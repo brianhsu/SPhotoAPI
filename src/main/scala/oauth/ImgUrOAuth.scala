@@ -14,7 +14,6 @@ import scala.util.Try
 import scala.xml.Node
 import scala.xml.XML
 
-
 /**
  *  ImgUr OAuth Helper object
  *
@@ -26,14 +25,15 @@ import scala.xml.XML
  *  @param  refreshToken      The refresh token from ImgUr API
  *  @param  expireAt          When will access token will be expired.
  */
-class ImgUrOAuth(appKey: String, appSecret: String,
+class ImgUrOAuth(override val appKey: String, override val appSecret: String,
                  private[sphotoapi] val service: OAuthService,
-                 private[sphotoapi] var accessToken: Option[Token] = None, 
-                 private[sphotoapi] var refreshToken: Option[String] = None,
-                 private[sphotoapi] var expireAt: Date = new Date) extends OAuth
+                 override protected[sphotoapi] var accessToken: Option[Token] = None, 
+                 override protected[sphotoapi] var refreshToken: Option[String] = None,
+                 override protected[sphotoapi] var expireAt: Date = new Date) extends OAuth
 {
 
   protected val prefixURL = "https://api.imgur.com/"
+  protected val refreshURL = "oauth2/token"
 
   /**
    *  Send Request and Parse Response to JSON / XML
@@ -67,38 +67,6 @@ class ImgUrOAuth(appKey: String, appSecret: String,
     }
 
   }
-
-  /**
-   *  Update access token from refreshToken
-   */
-  private def refreshAccessToken() 
-  {
-
-    if (refreshToken.isDefined) {
-
-      val request = buildRequest(
-        "oauth2/token", Verb.POST,
-        "refresh_token" -> refreshToken.get,
-        "client_id" -> appKey,
-        "client_secret" -> appSecret,
-        "grant_type" -> "refresh_token"
-      )
-
-      val currentTime = System.currentTimeMillis
-
-      val rawResponse = request.send.getBody
-      val jsonResponse = JsonParser.parse(rawResponse)
-
-      val (newAccessToken, newRefreshToken, expiresInSecond) = 
-        ImgUrOAuth.parseTokenJSON(jsonResponse)
-      
-      this.accessToken = Some(new Token(newAccessToken, "", rawResponse))
-      this.refreshToken = Some(newRefreshToken)
-      this.expireAt = new Date(currentTime + expiresInSecond.toLong * 1000)
-    }
-
-  }
-
 
   /**
    *  Parse response content to XML node
@@ -138,21 +106,4 @@ class ImgUrOAuth(appKey: String, appSecret: String,
 
 }
 
-object ImgUrOAuth {
-
-  /**
-   *  Parse token returned by ImgUr API.
-   *
-   *  @param  json    The JSON represent of ImgUr token response
-   *  @return         (accessToken, refreshToken, expiresInSecond)
-   */
-  def parseTokenJSON(json: JValue): (String, String, Int)  = {
-    val JString(accessToken)  = json \ "access_token"
-    val JString(refreshToken) = json \ "refresh_token"
-    val JInt(expiresInSecond) = json \ "expires_in"
-
-    (accessToken, refreshToken, expiresInSecond.toInt)
-  }
-
-}
 

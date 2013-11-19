@@ -55,7 +55,7 @@ class ImgUrAPI private(imgUrOAuth: ImgUrOAuth)
     val accessToken = imgUrOAuth.service.getAccessToken(null, verifier)
     val jsonResponse = JsonParser.parse(accessToken.getRawResponse)
 
-    val (rawAccessToken, refreshToken, expiresAt) = ImgUrOAuth.parseTokenJSON(jsonResponse)
+    val (rawAccessToken, refreshToken, expiresAt) = OAuth.parseTokenJSON(jsonResponse)
 
     imgUrOAuth.accessToken = Some(accessToken)
     imgUrOAuth.refreshToken = Some(refreshToken)

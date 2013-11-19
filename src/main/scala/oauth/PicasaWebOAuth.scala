@@ -4,15 +4,20 @@ import org.scribe.oauth.OAuthService
 import org.scribe.model.Token
 import org.scribe.model.Verb
 
+import java.util.Date
+
 import scala.util.Try
 import scala.xml.Node
 import scala.xml.XML
 
-class PicasaWebOAuth(appKey: String, appSecret: String,
+class PicasaWebOAuth(override val appKey: String, override val appSecret: String,
                  private[sphotoapi] val service: OAuthService,
-                 private[sphotoapi] var accessToken: Option[Token]) extends OAuth
+                 override protected[sphotoapi] var accessToken: Option[Token] = None, 
+                 override protected[sphotoapi] var refreshToken: Option[String] = None,
+                 override protected[sphotoapi] var expireAt: Date = new Date) extends OAuth
 {
 
+  protected val refreshURL = "/o/oauth2/token"
   protected val prefixURL = "https://picasaweb.google.com/data/feed/api/"
 
   /**
@@ -28,6 +33,10 @@ class PicasaWebOAuth(appKey: String, appSecret: String,
   {
     
     Try {
+
+      if (System.currentTimeMillis > expireAt.getTime) {
+        refreshAccessToken()
+      }
 
       val request = buildRequest(url, verb, params: _*)
       

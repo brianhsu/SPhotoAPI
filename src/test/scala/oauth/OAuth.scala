@@ -7,25 +7,32 @@ import org.scalatest.Matchers
 import org.scribe.model.OAuthRequest
 import org.scribe.model.Parameter
 import org.scribe.model.Verb
+import org.scribe.model.Token
+
+import java.util.Date
 
 class OAuthSpec extends FunSpec with Matchers with PrivateMethodTester {
 
   describe("OAuth") {
     val imgUrOAuth = new OAuth {
-      val prefixURL = "http://example/api/"
+      def appKey: String = ""
+      def appSecret: String = ""
+
+      protected def prefixURL: String = ""
+      protected def refreshURL: String = ""
+
+      protected[sphotoapi] var accessToken: Option[Token] = None
+      protected[sphotoapi] var refreshToken: Option[String] = None
+      protected[sphotoapi] var expireAt: Date = new Date
     }
 
     it("build GET request with parameter correctly") {
 
-      val buildRequest = PrivateMethod[OAuthRequest]('buildRequest)
-
-      val request = imgUrOAuth invokePrivate buildRequest (
+      val request = imgUrOAuth.buildRequest (
         "http://localhost/get", Verb.GET,
-        List(
-          "option1" -> "HelloWorld",
-          "option2" -> "Foo",
-          "option3" -> "Bar"
-        )
+         "option1" -> "HelloWorld",
+         "option2" -> "Foo",
+         "option3" -> "Bar"
       )
 
       request.getUrl shouldBe "http://localhost/get"
@@ -43,14 +50,12 @@ class OAuthSpec extends FunSpec with Matchers with PrivateMethodTester {
 
       val buildRequest = PrivateMethod[OAuthRequest]('buildRequest)
 
-      val request = imgUrOAuth invokePrivate buildRequest (
+      val request = imgUrOAuth.buildRequest (
         "http://localhost/post", Verb.POST,
-        List(
-          "option1" -> "HelloWorld",
-          "option2" -> "Foo",
-          "option3" -> "Bar",
-          "option4" -> "FooBar"
-        )
+        "option1" -> "HelloWorld",
+        "option2" -> "Foo",
+        "option3" -> "Bar",
+        "option4" -> "FooBar"
       )
 
       request.getUrl shouldBe "http://localhost/post"
