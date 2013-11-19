@@ -14,10 +14,6 @@ import scala.util.Try
 import scala.xml.Node
 import scala.xml.XML
 
-/**
- *  Used for Unit-test only.
- */
-private[sphotoapi] trait MockImgUrOAuth extends ImgUrOAuth
 
 /**
  *  ImgUr OAuth Helper object

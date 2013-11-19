@@ -3,6 +3,14 @@ package org.bone.sphotoapi.oauth
 import org.scribe.model.Verb
 import org.scribe.model.OAuthRequest
 
+/**
+ *  Used for Unit-test only.
+ */
+private[sphotoapi] trait MockOAuth extends OAuth
+
+/**
+ *  Tools for build HTTP request to OAuth service.
+ */
 trait OAuth {
 
   protected def prefixURL: String

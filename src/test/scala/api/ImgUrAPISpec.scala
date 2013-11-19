@@ -10,9 +10,8 @@ import org.scribe.model.Verb
 import scala.util.Success
 import scala.util.Failure
 
-object ImgUrAPIMock extends ImgUrOAuth(null, null, null, null) with MockImgUrOAuth {
+object ImgUrAPIMock extends ImgUrOAuth(null, null, null, null) with MockOAuth {
   
-
   override def sendRequest(url: String, verb: Verb, params: (String, String)*) = {
     
     (url, verb) match {
@@ -143,5 +142,4 @@ class ImgUrAPISpec extends FunSpec with Matchers {
     }
 
   }
-
 }

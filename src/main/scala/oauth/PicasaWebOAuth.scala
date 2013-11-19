@@ -8,11 +8,6 @@ import scala.util.Try
 import scala.xml.Node
 import scala.xml.XML
 
-/**
- *  Used for Unit-test only.
- */
-private[sphotoapi] trait MockPicasaWebOAuth extends PicasaWebOAuth
-
 class PicasaWebOAuth(appKey: String, appSecret: String,
                  private[sphotoapi] val service: OAuthService,
                  private[sphotoapi] var accessToken: Option[Token]) extends OAuth

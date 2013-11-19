@@ -113,7 +113,6 @@ object ImgUrAPI {
    *
    *  @param    appKey            The app key you got from ImgUr.
    *  @param    appSecret         The app secret you got from ImgUr.
-   *  @param    endPointPrefix    The app endpoint prefix
    *  @return                     ImgUrAPI object
    */
   def apply(appKey: String, appSecret: String): ImgUrAPI = 
@@ -140,7 +139,6 @@ object ImgUrAPI {
    *  @param    appKey            The app key you got from ImgUr.
    *  @param    appSecret         The app secret you got from ImgUr.
    *  @param    callback          The callback URL
-   *  @param    endPointPrefix    The app endpoint prefix
    *  @return                     ImgUrAPI object
    */
   def withCallback(appKey: String, appSecret: String, callback: String): ImgUrAPI = 
@@ -175,7 +173,6 @@ object ImgUrAPI {
    *  @param    appKey            The app key you got from ImgUr.
    *  @param    appSecret         The app secret you got from ImgUr.
    *  @param    refreshToken      The refresh token you got from ImgUr.
-   *  @param    endPointPrefix    The app endpoint prefix
    *  @return                     ImgUrAPI object
    */
   def withRefreshToken(appKey: String, appSecret: String, 
@@ -201,9 +198,7 @@ object ImgUrAPI {
   /**
    *  Used for Unit-test only.
    */
-  private[api] def withMock(mockOAuth: ImgUrOAuth with MockImgUrOAuth) = {
-    new ImgUrAPI(mockOAuth)
-  }
+  private[api] def withMock(mockOAuth: ImgUrOAuth with MockOAuth) = new ImgUrAPI(mockOAuth)
 
 
 }
