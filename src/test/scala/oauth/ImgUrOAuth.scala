@@ -2,7 +2,7 @@ package org.bone.sphotoapi.oauth
 
 import org.scalatest.FunSpec
 import org.scalatest.PrivateMethodTester 
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 
 import org.scribe.model.OAuthRequest
 import org.scribe.model.Parameter
@@ -12,7 +12,7 @@ import java.util.Date
 import scala.xml.Node
 import net.liftweb.json.JsonAST._
 
-class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTester {
+class ImgUrOAuthSpec extends FunSpec with Matchers with PrivateMethodTester {
 
   describe("ImgUrOAuth") {
 
@@ -39,15 +39,15 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
         )
       )
 
-      request.getUrl should be === "http://localhost/get"
-      request.getVerb should be === Verb.GET
-      request.getBodyParams.size should be === 0
+      request.getUrl shouldBe "http://localhost/get"
+      request.getVerb shouldBe Verb.GET
+      request.getBodyParams.size shouldBe 0
 
       val buildParams = request.getQueryStringParams
-      buildParams.size should be === 3
-      buildParams.contains(new Parameter("option1", "HelloWorld")) should be === true
-      buildParams.contains(new Parameter("option2", "Foo")) should be === true
-      buildParams.contains(new Parameter("option3", "Bar")) should be === true
+      buildParams.size shouldBe 3
+      buildParams.contains(new Parameter("option1", "HelloWorld")) shouldBe true
+      buildParams.contains(new Parameter("option2", "Foo")) shouldBe true
+      buildParams.contains(new Parameter("option3", "Bar")) shouldBe true
     }
 
     it("build POST request with parameter correctly") {
@@ -64,16 +64,16 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
         )
       )
 
-      request.getUrl should be === "http://localhost/post"
-      request.getVerb should be === Verb.POST
-      request.getQueryStringParams.size should be === 0
+      request.getUrl shouldBe "http://localhost/post"
+      request.getVerb shouldBe Verb.POST
+      request.getQueryStringParams.size shouldBe 0
 
       val buildParams = request.getBodyParams
-      buildParams.size should be === 4
-      buildParams.contains(new Parameter("option1", "HelloWorld")) should be === true
-      buildParams.contains(new Parameter("option2", "Foo")) should be === true
-      buildParams.contains(new Parameter("option3", "Bar")) should be === true
-      buildParams.contains(new Parameter("option4", "FooBar")) should be === true
+      buildParams.size shouldBe 4
+      buildParams.contains(new Parameter("option1", "HelloWorld")) shouldBe true
+      buildParams.contains(new Parameter("option2", "Foo")) shouldBe true
+      buildParams.contains(new Parameter("option3", "Bar")) shouldBe true
+      buildParams.contains(new Parameter("option4", "FooBar")) shouldBe true
     }
 
     it("parse well-formed normal XML correctly") {
@@ -87,7 +87,7 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
         </data>
       """)
 
-      xmlNode should be === 
+      xmlNode shouldBe 
         <data success="1" status="200">
           <id>384077</id>
           <reputation>158</reputation>
@@ -111,9 +111,9 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
       val JBool(success) = json \ "success"
       val JInt(id) = json \\ "id"
 
-      status should be === 200
-      success should be === true
-      id.toInt should be === 384077
+      status shouldBe 200
+      success shouldBe true
+      id.toInt shouldBe 384077
     }
 
     it("parse well-formed error XML correctly") {
@@ -134,7 +134,7 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
         imgUrOAuth invokePrivate parseXML (rawContent)
       }
 
-      exception.rawResponse should be === rawContent
+      exception.rawResponse shouldBe rawContent
 
     }
 
@@ -161,7 +161,7 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
         imgUrOAuth invokePrivate parseJSON (rawContent)
       }
 
-      exception.rawResponse should be === rawContent
+      exception.rawResponse shouldBe rawContent
 
     }
 

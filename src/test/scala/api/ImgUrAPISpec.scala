@@ -1,7 +1,7 @@
 package org.bone.sphotoapi.api
 
 import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 
 import org.bone.sphotoapi.oauth._
 
@@ -120,26 +120,26 @@ object ImgUrAPIMock extends ImgUrOAuth(null, null, null, null) with MockImgUrOAu
 
 }
 
-class ImgUrAPISpec extends FunSpec with ShouldMatchers {
+class ImgUrAPISpec extends FunSpec with Matchers {
 
   val api = ImgUrAPI.withMock(ImgUrAPIMock)
 
   describe("ImgUrAPI") {
 
     it("get exist user's album list correctly") {
-      api.getAlbums("test").get.map(_.id) should be === List("Azdxq", "rXK1z", "AHwna")
+      api.getAlbums("test").get.map(_.id) shouldBe List("Azdxq", "rXK1z", "AHwna")
     }
 
     it("get exist albums's photo list correctly") {
-      api.getPhotos("test").get.map(_.id) should be === List("ssidO", "8jUywIU", "w5BqcnG")
+      api.getPhotos("test").get.map(_.id) shouldBe List("ssidO", "8jUywIU", "w5BqcnG")
     }
 
     it("return Failure when user not found") {
-      api.getAlbums("userNotFound").isFailure should be === true
+      api.getAlbums("userNotFound").isFailure shouldBe true
     }
 
     it("return Failure when album not found") {
-      api.getAlbums("photoNotFound").isFailure should be === true
+      api.getAlbums("photoNotFound").isFailure shouldBe true
     }
 
   }
