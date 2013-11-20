@@ -17,9 +17,16 @@ object PicasaWebAPIMock extends PicasaWebOAuth(null, null, null, null) with Mock
     (url, verb) match {
       case ("user/1234", Verb.GET) => Success((200, "text/xml", albumsXML.toString))
       case ("user/default/albumid/5678?imgmax=d", Verb.GET) => Success((200, "text/xml", photosXML.toString))
+      case ("https://www.googleapis.com/oauth2/v1/userinfo", Verb.GET) => Success(200, "json", userInfo)
       case _ => Success((404, "text/html", "NotFound"))
     }
   }
+
+  val userInfo = """{
+    "id": "12345678",
+    "email": "test@example.com",
+    "verified_email": true
+  }"""
 
   val albumsXML = 
     <feed>
@@ -295,6 +302,10 @@ class PicasaWebAPISpec extends FunSpec with Matchers {
 
     it("get exist albums's photo list correctly") {
       api.getPhotos("5678").get.map(_.id) shouldBe List("5049938998052398770", "5049939625117624050", "5253168305703161186")
+    }
+
+    it("return correct information about user") {
+      api.getUserInfo.get shouldBe ("12345678", "test@example.com")
     }
 
     it("return Failure when user not found") {

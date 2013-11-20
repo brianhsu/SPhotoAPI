@@ -11,6 +11,8 @@ import org.scribe.model.Verb
 
 import scala.util.Try
 import java.util.Date
+import net.liftweb.json.JsonParser
+import net.liftweb.json.JsonAST._
 
 /**
  *  PicasaWeb API
@@ -54,6 +56,27 @@ class PicasaWebAPI private(oauth: PicasaWebOAuth) extends API(oauth)
     }
   }
 
+  /**
+   *  Get user information
+   *
+   *  @return   Try[(google UserID, EMail)]
+   */
+  def getUserInfo: Try[(String, String)] = {
+
+    def parseResponse(body: String) = Try {
+      val jsonResponse = JsonParser.parse(body)
+      val JString(userID) = jsonResponse \ "id"
+      val JString(email) = jsonResponse \ "email"
+
+      (userID, email)
+    }
+
+    for {
+      (code, contentType, body) <- oauth.sendRequest_("https://www.googleapis.com/oauth2/v1/userinfo", Verb.GET)
+      (userID, email) <- parseResponse(body)
+    } yield (userID, email)
+  }
+
 }
 
 /**
@@ -77,7 +100,7 @@ object PicasaWebAPI {
                     apiKey(appKey).
                     apiSecret(appSecret).
                     callback("urn:ietf:wg:oauth:2.0:oob").
-                    scope("https://picasaweb.google.com/data/").build
+                    scope("email https://picasaweb.google.com/data/").build
 
     val oauth = new PicasaWebOAuth(appKey, appSecret, service, accessToken = None)
 
@@ -99,7 +122,7 @@ object PicasaWebAPI {
                     provider(classOf[Google2Api]).
                     apiKey(appKey).
                     apiSecret(appSecret).
-                    scope("https://picasaweb.google.com/data/").
+                    scope("email https://picasaweb.google.com/data/").
                     callback(callback).build
 
     val oauth = new PicasaWebOAuth(appKey, appSecret, service, accessToken = None)

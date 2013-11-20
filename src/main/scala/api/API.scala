@@ -15,7 +15,7 @@ import net.liftweb.json.JsonParser
 import scala.util.Try
 import java.util.Date
 
-abstract class API(oauth: OAuth)
+abstract class API(val oauth: OAuth)
 {
   /**
    *  Get current refresh token of ImgUr API
