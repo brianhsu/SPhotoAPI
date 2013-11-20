@@ -22,8 +22,9 @@ import net.liftweb.json.JsonAST._
  *  
  *  @param  picasaWebOAuth  PicasaWebOAuth access object
  */
-class PicasaWebAPI private(oauth: PicasaWebOAuth) extends API(oauth)
+class PicasaWebAPI private(override val oauth: PicasaWebOAuth) extends API(oauth)
 {
+
   /**
    *  Get Photos From Album
    *
@@ -56,12 +57,15 @@ class PicasaWebAPI private(oauth: PicasaWebOAuth) extends API(oauth)
     }
   }
 
+  override def getPhotos(albumID: String): Try[List[Photo]] = getPhotos(albumID, "default", "d")
+  override def getAlbums(): Try[List[Album]] = getAlbums("default")
+
   /**
    *  Get user information
    *
    *  @return   Try[(google UserID, EMail)]
    */
-  def getUserInfo: Try[(String, String)] = {
+  override def getUserInfo: Try[(String, String)] = {
 
     def parseResponse(body: String) = Try {
       val jsonResponse = JsonParser.parse(body)

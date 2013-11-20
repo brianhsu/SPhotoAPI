@@ -11,7 +11,7 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 libraryDependencies ++= Seq(
   "org.scribe" % "scribe" % "1.3.5",
   "org.scalatest" % "scalatest_2.10" % "2.0" % "test",
-  "net.liftweb" %% "lift-json" % "2.5-RC5"
+  "net.liftweb" %% "lift-json" % "2.6-M2"
 )
 
 docDirectory in Compile <<= (baseDirectory / "api")

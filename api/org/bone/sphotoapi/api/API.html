@@ -100,10 +100,45 @@
 
         
 
-        
+        <div id="values" class="values members">
+              <h3>Abstract Value Members</h3>
+              <ol><li name="org.bone.sphotoapi.api.API#getAlbums" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="getAlbums():scala.util.Try[List[org.bone.sphotoapi.model.Album]]"></a>
+      <a id="getAlbums():Try[List[Album]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAlbums</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.List">List</span>[<a href="../model/Album.html" class="extype" name="org.bone.sphotoapi.model.Album">Album</a>]]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt"> Get User's Album list
+</p><div class="fullcomment"><div class="comment cmt"><p> Get User's Album list
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Success[List[Album]] if everything is fine.
+</p></dd></dl></div>
+    </li><li name="org.bone.sphotoapi.api.API#getPhotos" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="getPhotos(albumID:String):scala.util.Try[List[org.bone.sphotoapi.model.Photo]]"></a>
+      <a id="getPhotos(String):Try[List[Photo]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getPhotos</span><span class="params">(<span name="albumID">albumID: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.List">List</span>[<a href="../model/Photo.html" class="extype" name="org.bone.sphotoapi.model.Photo">Photo</a>]]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt"> Get Photos From Album
+</p><div class="fullcomment"><div class="comment cmt"><p> Get Photos From Album
+</p></div><dl class="paramcmts block"><dt class="param">albumID</dt><dd class="cmt"><p>The ID of album</p></dd><dt>returns</dt><dd class="cmt"><p>Success[List[Photo]] if everything is fine.
+</p></dd></dl></div>
+    </li></ol>
+            </div>
 
         <div id="values" class="values members">
-              <h3>Value Members</h3>
+              <h3>Concrete Value Members</h3>
               <ol><li name="scala.AnyRef#!=" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="!=(x$1:AnyRef):Boolean"></a>
       <a id="!=(AnyRef):Boolean"></a>

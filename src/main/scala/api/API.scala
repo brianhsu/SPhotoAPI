@@ -14,9 +14,32 @@ import net.liftweb.json.JsonParser
 
 import scala.util.Try
 import java.util.Date
+import java.net.URLEncoder
 
 abstract class API(val oauth: OAuth)
 {
+  /**
+   *  Get Photos From Album
+   *
+   *  @param    albumID     The ID of album
+   *  @return               Success[List[Photo]] if everything is fine.
+   */
+  def getPhotos(albumID: String): Try[List[Photo]]
+
+  /**
+   *  Get User's Album list
+   *
+   *  @return               Success[List[Album]] if everything is fine.
+   */
+  def getAlbums(): Try[List[Album]]
+
+  /**
+   *  Get user information
+   *
+   *  @return   Try[(google UserID, EMail)]
+   */
+  def getUserInfo(): Try[(String, String)]
+
   /**
    *  Get current refresh token of ImgUr API
    *
@@ -32,7 +55,19 @@ abstract class API(val oauth: OAuth)
    *
    *  @return   The ImgUr authorization page if success.
    */
-  def getAuthorizationURL: Try[String] = Try(oauth.service.getAuthorizationUrl(null))
+  def getAuthorizationURL(params: (String, String)*): Try[String] = Try {
+    
+    val urlParameter = params.map { case(name, value) => 
+      val encodedName = URLEncoder.encode(name)
+      val encodedValue = URLEncoder.encode(value)
+      s"$encodedName=$encodedValue" 
+    }.mkString("&", "&", "")
+
+    params match {
+      case Nil => oauth.service.getAuthorizationUrl(null)
+      case _   => oauth.service.getAuthorizationUrl(null) + urlParameter
+    }
+  }
 
   /**
    *  Authorize ImgUr

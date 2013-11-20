@@ -5,6 +5,8 @@ import org.bone.sphotoapi.parser._
 import org.bone.sphotoapi.model._
 import org.bone.sphotoapi.scribe._
 
+import net.liftweb.json.JsonAST._
+
 import org.scribe.builder.ServiceBuilder
 import org.scribe.model.Verb
 
@@ -17,9 +19,9 @@ import java.util.Date
  *  Use this class to access ImgUr API, you should create it
  *  by calling method in ImgUrAPI companion object.
  *  
- *  @param  imgUrOAuth  ImgUrOAuth access object
+ *  @param  oauth  ImgUrOAuth access object
  */
-class ImgUrAPI private(imgUrOAuth: ImgUrOAuth) extends API(imgUrOAuth)
+class ImgUrAPI private(override val oauth: ImgUrOAuth) extends API(oauth)
 {
 
   /**
@@ -28,11 +30,11 @@ class ImgUrAPI private(imgUrOAuth: ImgUrOAuth) extends API(imgUrOAuth)
    *  @param    albumID     The ID of album
    *  @return               Success[List[Photo]] if everything is fine.
    */
-  def getPhotos(albumID: String): Try[List[Photo]] = {
+  override def getPhotos(albumID: String): Try[List[Photo]] = {
 
     val endPoint = s"3/album/$albumID/images.xml"
 
-    imgUrOAuth.sendRequest(endPoint, Verb.GET).map { response =>
+    oauth.sendRequest(endPoint, Verb.GET).map { response =>
       ImgUrPhoto.fromXML(response.left.get)
     }
 
@@ -41,10 +43,31 @@ class ImgUrAPI private(imgUrOAuth: ImgUrOAuth) extends API(imgUrOAuth)
   /**
    *  Get User's Album list
    *
+   *  @return               Success[List[Album]] if everything is fine.
+   */
+  override def getAlbums(): Try[List[Album]] = getAlbums("me", None, None)
+
+  override def getUserInfo(): Try[(String, String)] = {
+    
+    def parseUserID(json: JValue) = (json \\ "id").values.toString
+    def parseEMail(json: JValue) = (json \\ "email").values.toString
+
+    val userIDResponse = oauth.sendRequest("3/account/me", Verb.GET)
+    val emailResponse = oauth.sendRequest("3/account/me/settings", Verb.GET)
+
+    for {
+      userID <- userIDResponse.map(x => parseUserID(x.right.get))
+      email <- emailResponse.map(x => parseEMail(x.right.get))
+    } yield (userID, email)
+  }
+
+  /**
+   *  Get User's Album list
+   *
    *  @param    username    username, "me" if you want to fetch current user's alubm.
    *  @return               Success[List[Album]] if everything is fine.
    */
-  def getAlbums(username: String = "me", 
+  def getAlbums(username: String, 
                 page: Option[Int] = None, 
                 perPage: Option[Int] = None): Try[List[Album]] = {
 
@@ -54,7 +77,7 @@ class ImgUrAPI private(imgUrOAuth: ImgUrOAuth) extends API(imgUrOAuth)
       perPage.map("perPage" -> _.toString)
     ).toList
 
-    imgUrOAuth.sendRequest(endPoint, Verb.GET, params: _*).map { response =>
+    oauth.sendRequest(endPoint, Verb.GET, params: _*).map { response =>
       ImgUrAlbum.fromXML(response.left.get)
     }
     
