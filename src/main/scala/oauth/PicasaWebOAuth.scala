@@ -11,13 +11,13 @@ import scala.xml.Node
 import scala.xml.XML
 
 class PicasaWebOAuth(override val appKey: String, override val appSecret: String,
-                 private[sphotoapi] val service: OAuthService,
+                 override protected[sphotoapi] val service: OAuthService,
                  override protected[sphotoapi] var accessToken: Option[Token] = None, 
                  override protected[sphotoapi] var refreshToken: Option[String] = None,
                  override protected[sphotoapi] var expireAt: Date = new Date) extends OAuth
 {
 
-  protected val refreshURL = "/o/oauth2/token"
+  protected val refreshURL = "https://accounts.google.com/o/oauth2/token"
   protected val prefixURL = "https://picasaweb.google.com/data/feed/api/"
 
   /**
@@ -31,27 +31,20 @@ class PicasaWebOAuth(override val appKey: String, override val appSecret: String
   def sendRequest(url: String, verb: Verb, 
                   params: (String, String)*): Try[Node] = 
   {
-    
-    Try {
 
-      if (System.currentTimeMillis > expireAt.getTime) {
-        refreshAccessToken()
-      }
-
-      val request = buildRequest(url, verb, params: _*)
-      
-      service.signRequest(accessToken getOrElse null, request)
-
-      val response = request.send
-      val contentType = response.getHeader("Content-Type")
-      val responseContent = response.getBody
-
+    def parseResponse(body: String) = Try {
       try {
-        XML.loadString(responseContent)
+        XML.loadString(body)
       } catch {
-        case e: Exception => throw new Exception(responseContent)
+        case e: Exception => throw new Exception(body)
       }
     }
+
+    for {
+      (code, contentType, body) <- sendRequest_(url, verb, params: _*)
+      response <- parseResponse(body)
+    } yield response
+
   }
 }
 

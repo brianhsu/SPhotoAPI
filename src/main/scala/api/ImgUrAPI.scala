@@ -6,11 +6,7 @@ import org.bone.sphotoapi.model._
 import org.bone.sphotoapi.scribe._
 
 import org.scribe.builder.ServiceBuilder
-import org.scribe.builder.api.Google2Api
 import org.scribe.model.Verb
-import org.scribe.model.Verifier
-
-import net.liftweb.json.JsonParser
 
 import scala.util.Try
 import java.util.Date
@@ -23,44 +19,8 @@ import java.util.Date
  *  
  *  @param  imgUrOAuth  ImgUrOAuth access object
  */
-class ImgUrAPI private(imgUrOAuth: ImgUrOAuth) 
+class ImgUrAPI private(imgUrOAuth: ImgUrOAuth) extends API(imgUrOAuth)
 {
-  /**
-   *  Get current refresh token of ImgUr API
-   *
-   *  You could use refreshToken to verify ImgUr authorization,
-   *  instead of direct user to ImgUr authorization page again.
-   *
-   *  @return   Current refresh token
-   */
-  def getRefreshToken = imgUrOAuth.refreshToken
-
-  /**
-   *  Get authorization URL
-   *
-   *  @return   The ImgUr authorization page if success.
-   */
-  def getAuthorizationURL: Try[String] = Try(imgUrOAuth.service.getAuthorizationUrl(null))
-
-  /**
-   *  Authorize ImgUr
-   *
-   *  @param  verifyCode  The pin / code returned by ImgUr
-   *  @return             Success[Unit] if success.
-   */
-  def authorize(verifyCode: String): Try[Unit] = Try {
-    
-    val currentTime = System.currentTimeMillis
-    val verifier = new Verifier(verifyCode)
-    val accessToken = imgUrOAuth.service.getAccessToken(null, verifier)
-    val jsonResponse = JsonParser.parse(accessToken.getRawResponse)
-
-    val (rawAccessToken, refreshToken, expiresAt) = OAuth.parseTokenJSON(jsonResponse)
-
-    imgUrOAuth.accessToken = Some(accessToken)
-    imgUrOAuth.refreshToken = Some(refreshToken)
-    imgUrOAuth.expireAt = new Date(currentTime + expiresAt * 1000)
-  }
 
   /**
    *  Get Photos From Album
@@ -198,7 +158,5 @@ object ImgUrAPI {
    *  Used for Unit-test only.
    */
   private[api] def withMock(mockOAuth: ImgUrOAuth with MockOAuth) = new ImgUrAPI(mockOAuth)
-
-
 }
 

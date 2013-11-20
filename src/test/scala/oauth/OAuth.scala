@@ -14,21 +14,22 @@ import java.util.Date
 class OAuthSpec extends FunSpec with Matchers with PrivateMethodTester {
 
   describe("OAuth") {
-    val imgUrOAuth = new OAuth {
+    val mockOAuth = new OAuth {
       def appKey: String = ""
       def appSecret: String = ""
 
-      protected def prefixURL: String = ""
-      protected def refreshURL: String = ""
+      def prefixURL: String = ""
+      def refreshURL: String = ""
 
-      protected[sphotoapi] var accessToken: Option[Token] = None
-      protected[sphotoapi] var refreshToken: Option[String] = None
-      protected[sphotoapi] var expireAt: Date = new Date
+      var accessToken: Option[Token] = None
+      var refreshToken: Option[String] = None
+      var expireAt: Date = new Date
+      val service = null
     }
 
     it("build GET request with parameter correctly") {
 
-      val request = imgUrOAuth.buildRequest (
+      val request = mockOAuth.buildRequest (
         "http://localhost/get", Verb.GET,
          "option1" -> "HelloWorld",
          "option2" -> "Foo",
@@ -48,9 +49,7 @@ class OAuthSpec extends FunSpec with Matchers with PrivateMethodTester {
 
     it("build POST request with parameter correctly") {
 
-      val buildRequest = PrivateMethod[OAuthRequest]('buildRequest)
-
-      val request = imgUrOAuth.buildRequest (
+      val request = mockOAuth.buildRequest (
         "http://localhost/post", Verb.POST,
         "option1" -> "HelloWorld",
         "option2" -> "Foo",

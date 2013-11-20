@@ -26,7 +26,7 @@ import scala.xml.XML
  *  @param  expireAt          When will access token will be expired.
  */
 class ImgUrOAuth(override val appKey: String, override val appSecret: String,
-                 private[sphotoapi] val service: OAuthService,
+                 override protected[sphotoapi] val service: OAuthService,
                  override protected[sphotoapi] var accessToken: Option[Token] = None, 
                  override protected[sphotoapi] var refreshToken: Option[String] = None,
                  override protected[sphotoapi] var expireAt: Date = new Date) extends OAuth
@@ -34,6 +34,7 @@ class ImgUrOAuth(override val appKey: String, override val appSecret: String,
 
   protected val prefixURL = "https://api.imgur.com/"
   protected val refreshURL = "oauth2/token"
+
 
   /**
    *  Send Request and Parse Response to JSON / XML
@@ -46,25 +47,18 @@ class ImgUrOAuth(override val appKey: String, override val appSecret: String,
   def sendRequest(url: String, verb: Verb, 
                   params: (String, String)*): Try[Either[Node, JValue]] = 
   {
-    
-    Try {
 
-      if (System.currentTimeMillis > expireAt.getTime) {
-        refreshAccessToken()
+    def parseResponse(contentType: String, body: String) = Try {
+      contentType match {
+        case "text/xml" => Left(parseXML(body))
+        case "application/json" => Right(parseJSON(body))
       }
-
-      val request = buildRequest(url, verb, params: _*)
-      
-      service.signRequest(accessToken getOrElse null, request)
-
-      val response = request.send
-
-      response.getHeader("Content-Type") match {
-        case "text/xml" => Left(parseXML(response.getBody))
-        case "application/json" => Right(parseJSON(response.getBody))
-      }
-
     }
+
+    for {
+      (code, contentType, body) <- sendRequest_(url, verb, params:_*)
+      response <- parseResponse(contentType, body)
+    } yield response
 
   }
 

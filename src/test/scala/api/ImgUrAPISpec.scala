@@ -12,12 +12,12 @@ import scala.util.Failure
 
 object ImgUrAPIMock extends ImgUrOAuth(null, null, null, null) with MockOAuth {
   
-  override def sendRequest(url: String, verb: Verb, params: (String, String)*) = {
+  override def sendRequest_(url: String, verb: Verb, params: (String, String)*) = {
     
     (url, verb) match {
-      case ("3/account/test/albums.xml", Verb.GET) => Success(Left(albumsXML))
-      case ("3/album/test/images.xml", Verb.GET) => Success(Left(photosXML))
-      case _ => Failure(new Exception("NotFound"))
+      case ("3/account/test/albums.xml", Verb.GET) => Success((200, "text/xml", albumsXML.toString))
+      case ("3/album/test/images.xml", Verb.GET) => Success((200, "text/xml", photosXML.toString))
+      case _ => Success((400, "text/xml", "<error>Not Found</error>"))
     }
 
   }
