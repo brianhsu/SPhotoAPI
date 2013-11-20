@@ -7,9 +7,6 @@ import org.bone.sphotoapi.scribe._
 
 import org.scribe.builder.ServiceBuilder
 import org.scribe.model.Verb
-import org.scribe.model.Verifier
-
-import net.liftweb.json.JsonParser
 
 import scala.util.Try
 import java.util.Date
@@ -22,44 +19,8 @@ import java.util.Date
  *  
  *  @param  imgUrOAuth  ImgUrOAuth access object
  */
-class ImgUrAPI private(imgUrOAuth: ImgUrOAuth) 
+class ImgUrAPI private(imgUrOAuth: ImgUrOAuth) extends API(imgUrOAuth)
 {
-  /**
-   *  Get current refresh token of ImgUr API
-   *
-   *  You could use refreshToken to verify ImgUr authorization,
-   *  instead of direct user to ImgUr authorization page again.
-   *
-   *  @return   Current refresh token
-   */
-  def getRefreshToken = imgUrOAuth.refreshToken
-
-  /**
-   *  Get authorization URL
-   *
-   *  @return   The ImgUr authorization page if success.
-   */
-  def getAuthorizationURL: Try[String] = Try(imgUrOAuth.service.getAuthorizationUrl(null))
-
-  /**
-   *  Authorize ImgUr
-   *
-   *  @param  verifyCode  The pin / code returned by ImgUr
-   *  @return             Success[Unit] if success.
-   */
-  def authorize(verifyCode: String): Try[Unit] = Try {
-    
-    val currentTime = System.currentTimeMillis
-    val verifier = new Verifier(verifyCode)
-    val accessToken = imgUrOAuth.service.getAccessToken(null, verifier)
-    val jsonResponse = JsonParser.parse(accessToken.getRawResponse)
-
-    val (rawAccessToken, refreshToken, expiresAt) = ImgUrOAuth.parseTokenJSON(jsonResponse)
-
-    imgUrOAuth.accessToken = Some(accessToken)
-    imgUrOAuth.refreshToken = Some(refreshToken)
-    imgUrOAuth.expireAt = new Date(currentTime + expiresAt * 1000)
-  }
 
   /**
    *  Get Photos From Album
@@ -112,11 +73,9 @@ object ImgUrAPI {
    *
    *  @param    appKey            The app key you got from ImgUr.
    *  @param    appSecret         The app secret you got from ImgUr.
-   *  @param    endPointPrefix    The app endpoint prefix
    *  @return                     ImgUrAPI object
    */
-  def apply(appKey: String, appSecret: String, 
-            endPointPrefix: String = "https://api.imgur.com/"): ImgUrAPI = 
+  def apply(appKey: String, appSecret: String): ImgUrAPI = 
   {
 
     val service = (new ServiceBuilder).
@@ -125,7 +84,7 @@ object ImgUrAPI {
                     apiSecret(appSecret).build
 
     val oauth = new ImgUrOAuth(
-      endPointPrefix, appKey, appSecret, service,
+      appKey, appSecret, service,
       accessToken = None,
       refreshToken = None,
       expireAt = new Date
@@ -140,12 +99,9 @@ object ImgUrAPI {
    *  @param    appKey            The app key you got from ImgUr.
    *  @param    appSecret         The app secret you got from ImgUr.
    *  @param    callback          The callback URL
-   *  @param    endPointPrefix    The app endpoint prefix
    *  @return                     ImgUrAPI object
    */
-  def withCallback(appKey: String, appSecret: String, 
-                   callback: String,
-                   endPointPrefix: String = "https://api.imgur.com/"): ImgUrAPI = 
+  def withCallback(appKey: String, appSecret: String, callback: String): ImgUrAPI = 
   {
 
     val service = (new ServiceBuilder).
@@ -155,7 +111,7 @@ object ImgUrAPI {
                     callback(callback).build
 
     val oauth = new ImgUrOAuth(
-      endPointPrefix, appKey, appSecret, service,
+      appKey, appSecret, service,
       accessToken = None,
       refreshToken = None,
       expireAt = new Date
@@ -177,12 +133,10 @@ object ImgUrAPI {
    *  @param    appKey            The app key you got from ImgUr.
    *  @param    appSecret         The app secret you got from ImgUr.
    *  @param    refreshToken      The refresh token you got from ImgUr.
-   *  @param    endPointPrefix    The app endpoint prefix
    *  @return                     ImgUrAPI object
    */
   def withRefreshToken(appKey: String, appSecret: String, 
-                       refreshToken: String,
-                       endPointPrefix: String = "https://api.imgur.com/"): ImgUrAPI = 
+                       refreshToken: String): ImgUrAPI = 
   {
     val service = (new ServiceBuilder).
                     provider(classOf[ImgUr3Api]).
@@ -190,7 +144,7 @@ object ImgUrAPI {
                     apiSecret(appSecret).build
 
     val oauth = new ImgUrOAuth(
-      endPointPrefix, appKey, appSecret, service,
+      appKey, appSecret, service,
       accessToken = None,
       refreshToken = Some(refreshToken),
       expireAt = new Date
@@ -203,10 +157,6 @@ object ImgUrAPI {
   /**
    *  Used for Unit-test only.
    */
-  private[api] def withMock(mockOAuth: ImgUrOAuth with MockImgUrOAuth) = {
-    new ImgUrAPI(mockOAuth)
-  }
-
-
+  private[api] def withMock(mockOAuth: ImgUrOAuth with MockOAuth) = new ImgUrAPI(mockOAuth)
 }
 

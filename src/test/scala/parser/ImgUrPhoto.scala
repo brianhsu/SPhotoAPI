@@ -3,17 +3,17 @@ package org.bone.sphotoapi.parser
 import org.bone.sphotoapi.model.Photo
 
 import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 
 import java.util.Date
 
-class ImgUrPhotoSpec extends FunSpec with ShouldMatchers {
+class ImgUrPhotoSpec extends FunSpec with Matchers {
 
   import ImgUrPhotoSpec._
 
   describe("ImgUrPhotoSpec") {
     it ("should parse photo with title XML correctly") {
-      ImgUrPhoto(photoWithTitle) should be === Photo(
+      ImgUrPhoto(photoWithTitle) shouldBe Photo(
         id = "ssidO",
         title = Some("PhotoTitle1"),
         timestamp = new Date(1285674177 * 1000L),
@@ -25,7 +25,7 @@ class ImgUrPhotoSpec extends FunSpec with ShouldMatchers {
     }
 
     it ("should parse photo list XML correctly") {
-      ImgUrPhoto.fromXML(photoList) should be === List(
+      ImgUrPhoto.fromXML(photoList) shouldBe List(
         Photo(
           id = "ssidO",
           title = Some("PhotoTitle1"),
@@ -58,7 +58,7 @@ class ImgUrPhotoSpec extends FunSpec with ShouldMatchers {
   }
 }
 
-object ImgUrPhotoSpec extends FunSpec with ShouldMatchers {
+object ImgUrPhotoSpec extends FunSpec with Matchers {
   val photoWithTitle = 
     <item>
       <id>ssidO</id>

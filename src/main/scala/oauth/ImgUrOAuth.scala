@@ -15,11 +15,6 @@ import scala.xml.Node
 import scala.xml.XML
 
 /**
- *  Used for Unit-test only.
- */
-private[sphotoapi] trait MockImgUrOAuth extends ImgUrOAuth
-
-/**
  *  ImgUr OAuth Helper object
  *
  *  @param  imgUrAPIPrefix    ImgUr API endpoint prefix
@@ -30,12 +25,15 @@ private[sphotoapi] trait MockImgUrOAuth extends ImgUrOAuth
  *  @param  refreshToken      The refresh token from ImgUr API
  *  @param  expireAt          When will access token will be expired.
  */
-class ImgUrOAuth(imgUrAPIPrefix: String, appKey: String, appSecret: String,
-                 private[sphotoapi] val service: OAuthService,
-                 private[sphotoapi] var accessToken: Option[Token] = None, 
-                 private[sphotoapi] var refreshToken: Option[String] = None,
-                 private[sphotoapi] var expireAt: Date = new Date)
+class ImgUrOAuth(override val appKey: String, override val appSecret: String,
+                 override protected[sphotoapi] val service: OAuthService,
+                 override protected[sphotoapi] var accessToken: Option[Token] = None, 
+                 override protected[sphotoapi] var refreshToken: Option[String] = None,
+                 override protected[sphotoapi] var expireAt: Date = new Date) extends OAuth
 {
+
+  protected val prefixURL = "https://api.imgur.com/"
+  protected val refreshURL = "oauth2/token"
 
 
   /**
@@ -49,59 +47,20 @@ class ImgUrOAuth(imgUrAPIPrefix: String, appKey: String, appSecret: String,
   def sendRequest(url: String, verb: Verb, 
                   params: (String, String)*): Try[Either[Node, JValue]] = 
   {
-    
-    Try {
 
-      if (System.currentTimeMillis > expireAt.getTime) {
-        refreshAccessToken()
+    def parseResponse(contentType: String, body: String) = Try {
+      contentType match {
+        case "text/xml" => Left(parseXML(body))
+        case "application/json" => Right(parseJSON(body))
       }
-
-      val request = buildRequest(url, verb, params: _*)
-      
-      service.signRequest(accessToken getOrElse null, request)
-
-      val response = request.send
-
-      response.getHeader("Content-Type") match {
-        case "text/xml" => Left(parseXML(response.getBody))
-        case "application/json" => Right(parseJSON(response.getBody))
-      }
-
     }
 
-  }
-
-  /**
-   *  Update access token from refreshToken
-   */
-  private def refreshAccessToken() 
-  {
-
-    if (refreshToken.isDefined) {
-
-      val request = buildRequest(
-        "oauth2/token", Verb.POST,
-        "refresh_token" -> refreshToken.get,
-        "client_id" -> appKey,
-        "client_secret" -> appSecret,
-        "grant_type" -> "refresh_token"
-      )
-
-      val currentTime = System.currentTimeMillis
-
-      val rawResponse = request.send.getBody
-      val jsonResponse = JsonParser.parse(rawResponse)
-
-      val (newAccessToken, newRefreshToken, expiresInSecond) = 
-        ImgUrOAuth.parseTokenJSON(jsonResponse)
-      
-      this.accessToken = Some(new Token(newAccessToken, "", rawResponse))
-      this.refreshToken = Some(newRefreshToken)
-      this.expireAt = new Date(currentTime + expiresInSecond.toLong * 1000)
-    }
+    for {
+      (code, contentType, body) <- sendRequest_(url, verb, params:_*)
+      response <- parseResponse(contentType, body)
+    } yield response
 
   }
-
 
   /**
    *  Parse response content to XML node
@@ -139,46 +98,6 @@ class ImgUrOAuth(imgUrAPIPrefix: String, appKey: String, appSecret: String,
     json
   }
 
-  /**
-   *  Create OAuthReqeust object and attatch params to it.
-   *
-   *  @param    url         API Endpoint.
-   *  @param    method      HTTP method type.
-   *  @param    params      Parameters to send.
-   */
-  private def buildRequest(url: String, method: Verb, 
-                           params: (String, String)*): OAuthRequest = 
-  {
-
-    val fullURL = if(url.startsWith("http")) url else imgUrAPIPrefix + url
-    val request = new OAuthRequest(method, fullURL)
-
-    if (method == Verb.POST) {
-      params.foreach { case(key, value) => request.addBodyParameter(key, value) }
-    } else if (method == Verb.GET) {
-      params.foreach { case(key, value) => request.addQuerystringParameter(key, value) }
-    }
-
-    request
-  }
-
 }
 
-object ImgUrOAuth {
-
-  /**
-   *  Parse token returned by ImgUr API.
-   *
-   *  @param  json    The JSON represent of ImgUr token response
-   *  @return         (accessToken, refreshToken, expiresInSecond)
-   */
-  def parseTokenJSON(json: JValue): (String, String, Int)  = {
-    val JString(accessToken)  = json \ "access_token"
-    val JString(refreshToken) = json \ "refresh_token"
-    val JInt(expiresInSecond) = json \ "expires_in"
-
-    (accessToken, refreshToken, expiresInSecond.toInt)
-  }
-
-}
 

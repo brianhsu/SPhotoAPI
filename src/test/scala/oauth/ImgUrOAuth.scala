@@ -2,22 +2,17 @@ package org.bone.sphotoapi.oauth
 
 import org.scalatest.FunSpec
 import org.scalatest.PrivateMethodTester 
-import org.scalatest.matchers.ShouldMatchers
-
-import org.scribe.model.OAuthRequest
-import org.scribe.model.Parameter
-import org.scribe.model.Verb
+import org.scalatest.Matchers
 
 import java.util.Date
 import scala.xml.Node
 import net.liftweb.json.JsonAST._
 
-class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTester {
+class ImgUrOAuthSpec extends FunSpec with Matchers with PrivateMethodTester {
 
   describe("ImgUrOAuth") {
 
     val imgUrOAuth = new ImgUrOAuth(
-      imgUrAPIPrefix = "https://api.imgur.com/", 
       service = null, 
       appKey = null, 
       appSecret = null,
@@ -25,56 +20,6 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
       refreshToken = None,
       expireAt = new Date
     )
-
-    it("build GET request with parameter correctly") {
-
-      val buildRequest = PrivateMethod[OAuthRequest]('buildRequest)
-
-      val request = imgUrOAuth invokePrivate buildRequest (
-        "http://localhost/get", Verb.GET,
-        List(
-          "option1" -> "HelloWorld",
-          "option2" -> "Foo",
-          "option3" -> "Bar"
-        )
-      )
-
-      request.getUrl should be === "http://localhost/get"
-      request.getVerb should be === Verb.GET
-      request.getBodyParams.size should be === 0
-
-      val buildParams = request.getQueryStringParams
-      buildParams.size should be === 3
-      buildParams.contains(new Parameter("option1", "HelloWorld")) should be === true
-      buildParams.contains(new Parameter("option2", "Foo")) should be === true
-      buildParams.contains(new Parameter("option3", "Bar")) should be === true
-    }
-
-    it("build POST request with parameter correctly") {
-
-      val buildRequest = PrivateMethod[OAuthRequest]('buildRequest)
-
-      val request = imgUrOAuth invokePrivate buildRequest (
-        "http://localhost/post", Verb.POST,
-        List(
-          "option1" -> "HelloWorld",
-          "option2" -> "Foo",
-          "option3" -> "Bar",
-          "option4" -> "FooBar"
-        )
-      )
-
-      request.getUrl should be === "http://localhost/post"
-      request.getVerb should be === Verb.POST
-      request.getQueryStringParams.size should be === 0
-
-      val buildParams = request.getBodyParams
-      buildParams.size should be === 4
-      buildParams.contains(new Parameter("option1", "HelloWorld")) should be === true
-      buildParams.contains(new Parameter("option2", "Foo")) should be === true
-      buildParams.contains(new Parameter("option3", "Bar")) should be === true
-      buildParams.contains(new Parameter("option4", "FooBar")) should be === true
-    }
 
     it("parse well-formed normal XML correctly") {
 
@@ -87,7 +32,7 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
         </data>
       """)
 
-      xmlNode should be === 
+      xmlNode shouldBe 
         <data success="1" status="200">
           <id>384077</id>
           <reputation>158</reputation>
@@ -111,9 +56,9 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
       val JBool(success) = json \ "success"
       val JInt(id) = json \\ "id"
 
-      status should be === 200
-      success should be === true
-      id.toInt should be === 384077
+      status shouldBe 200
+      success shouldBe true
+      id.toInt shouldBe 384077
     }
 
     it("parse well-formed error XML correctly") {
@@ -134,7 +79,7 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
         imgUrOAuth invokePrivate parseXML (rawContent)
       }
 
-      exception.rawResponse should be === rawContent
+      exception.rawResponse shouldBe rawContent
 
     }
 
@@ -161,7 +106,7 @@ class ImgUrOAuthSpec extends FunSpec with ShouldMatchers with PrivateMethodTeste
         imgUrOAuth invokePrivate parseJSON (rawContent)
       }
 
-      exception.rawResponse should be === rawContent
+      exception.rawResponse shouldBe rawContent
 
     }
 

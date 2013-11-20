@@ -1,7 +1,7 @@
 package org.bone.sphotoapi.api
 
 import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 
 import org.bone.sphotoapi.oauth._
 
@@ -10,15 +10,14 @@ import org.scribe.model.Verb
 import scala.util.Success
 import scala.util.Failure
 
-object ImgUrAPIMock extends ImgUrOAuth(null, null, null, null) with MockImgUrOAuth {
+object ImgUrAPIMock extends ImgUrOAuth(null, null, null, null) with MockOAuth {
   
-
-  override def sendRequest(url: String, verb: Verb, params: (String, String)*) = {
+  override def sendRequest_(url: String, verb: Verb, params: (String, String)*) = {
     
     (url, verb) match {
-      case ("3/account/test/albums.xml", Verb.GET) => Success(Left(albumsXML))
-      case ("3/album/test/images.xml", Verb.GET) => Success(Left(photosXML))
-      case _ => Failure(new Exception("NotFound"))
+      case ("3/account/test/albums.xml", Verb.GET) => Success((200, "text/xml", albumsXML.toString))
+      case ("3/album/test/images.xml", Verb.GET) => Success((200, "text/xml", photosXML.toString))
+      case _ => Success((400, "text/xml", "<error>Not Found</error>"))
     }
 
   }
@@ -120,28 +119,27 @@ object ImgUrAPIMock extends ImgUrOAuth(null, null, null, null) with MockImgUrOAu
 
 }
 
-class ImgUrAPISpec extends FunSpec with ShouldMatchers {
+class ImgUrAPISpec extends FunSpec with Matchers {
 
   val api = ImgUrAPI.withMock(ImgUrAPIMock)
 
   describe("ImgUrAPI") {
 
     it("get exist user's album list correctly") {
-      api.getAlbums("test").get.map(_.id) should be === List("Azdxq", "rXK1z", "AHwna")
+      api.getAlbums("test").get.map(_.id) shouldBe List("Azdxq", "rXK1z", "AHwna")
     }
 
     it("get exist albums's photo list correctly") {
-      api.getPhotos("test").get.map(_.id) should be === List("ssidO", "8jUywIU", "w5BqcnG")
+      api.getPhotos("test").get.map(_.id) shouldBe List("ssidO", "8jUywIU", "w5BqcnG")
     }
 
     it("return Failure when user not found") {
-      api.getAlbums("userNotFound").isFailure should be === true
+      api.getAlbums("userNotFound").isFailure shouldBe true
     }
 
     it("return Failure when album not found") {
-      api.getAlbums("photoNotFound").isFailure should be === true
+      api.getAlbums("photoNotFound").isFailure shouldBe true
     }
 
   }
-
 }

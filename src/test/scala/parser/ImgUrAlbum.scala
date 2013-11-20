@@ -4,11 +4,11 @@ import org.bone.sphotoapi.model.Album
 import org.bone.sphotoapi.model.AlbumPrivacy
 
 import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 
 import java.util.Date
 
-class ImgUrAlbumSpec extends FunSpec with ShouldMatchers {
+class ImgUrAlbumSpec extends FunSpec with Matchers {
 
   import ImgUrAlbumSpec._
 
@@ -16,7 +16,7 @@ class ImgUrAlbumSpec extends FunSpec with ShouldMatchers {
 
     it ("should parse public ImgUr AlbumXML correctly") {
 
-      ImgUrAlbum(PublicAlbumXML) should be === Album(
+      ImgUrAlbum(PublicAlbumXML) shouldBe Album(
         id = "AHwna",
         title = "怦然心動的人生整理魔法",
         description = None,
@@ -30,7 +30,7 @@ class ImgUrAlbumSpec extends FunSpec with ShouldMatchers {
 
     it ("should parse hidden ImgUr AlbumXML correctly") {
 
-      ImgUrAlbum(HiddenAlbumXML) should be === Album(
+      ImgUrAlbum(HiddenAlbumXML) shouldBe Album(
         id = "Azdxq",
         title = "test",
         description = Some("Hello Hidden Album"),
@@ -44,7 +44,7 @@ class ImgUrAlbumSpec extends FunSpec with ShouldMatchers {
 
     it ("should parse secret ImgUr AlbumXML correctly") {
 
-      ImgUrAlbum(SecretAlbumXML) should be === Album(
+      ImgUrAlbum(SecretAlbumXML) shouldBe Album(
         id = "rXK1z",
         title = "MySecret",
         description = None,
@@ -58,7 +58,7 @@ class ImgUrAlbumSpec extends FunSpec with ShouldMatchers {
 
     it ("should parse album list correctly") {
       val albums = ImgUrAlbum.fromXML(AlbumList)
-      albums should be === List(
+      albums shouldBe List(
         Album(
           id = "Azdxq",
           title = "test",
