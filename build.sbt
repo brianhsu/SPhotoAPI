@@ -4,6 +4,8 @@ version := "0.1"
 
 scalaVersion := "2.10.3"
 
+organization := "org.bone"
+
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
 libraryDependencies ++= Seq(
@@ -13,4 +15,8 @@ libraryDependencies ++= Seq(
 )
 
 docDirectory in Compile <<= (baseDirectory / "api")
+
+publishTo := Some(
+  Resolver.sftp("bone", "bone.twbbs.org.tw", "public_html/ivy")
+)
 
