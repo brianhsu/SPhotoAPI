@@ -246,22 +246,6 @@
               
         </dd></dl></div>
     </li><li name="org.bone.sphotoapi.api.PicasaWebAPI#getAlbums" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getAlbums(userID:String):scala.util.Try[List[org.bone.sphotoapi.model.Album]]"></a>
-      <a id="getAlbums(String):Try[List[Album]]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">getAlbums</span><span class="params">(<span name="userID">userID: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;default&quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.List">List</span>[<a href="../model/Album.html" class="extype" name="org.bone.sphotoapi.model.Album">Album</a>]]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt"> Get User's Album list
-</p><div class="fullcomment"><div class="comment cmt"><p> Get User's Album list
-</p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>userID of album onwer, &quot;default&quot; if you want to fetch current user's alubm.</p></dd><dt>returns</dt><dd class="cmt"><p>Success[List[Album]] if everything is fine.
-</p></dd></dl></div>
-    </li><li name="org.bone.sphotoapi.api.PicasaWebAPI#getAlbums" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getAlbums():scala.util.Try[List[org.bone.sphotoapi.model.Album]]"></a>
       <a id="getAlbums():Try[List[Album]]"></a>
       <h4 class="signature">
@@ -277,16 +261,32 @@
 </p><div class="fullcomment"><div class="comment cmt"><p> Get User's Album list
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Success[List[Album]] if everything is fine.
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.api.PicasaWebAPI">PicasaWebAPI</a> → <a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
-    </li><li name="org.bone.sphotoapi.api.API#getAuthorizationURL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getAuthorizationURL:scala.util.Try[String]"></a>
-      <a id="getAuthorizationURL:Try[String]"></a>
+    </li><li name="org.bone.sphotoapi.api.PicasaWebAPI#getAlbums" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getAlbums(userID:String):scala.util.Try[List[org.bone.sphotoapi.model.Album]]"></a>
+      <a id="getAlbums(String):Try[List[Album]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getAuthorizationURL</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">getAlbums</span><span class="params">(<span name="userID">userID: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;default&quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.List">List</span>[<a href="../model/Album.html" class="extype" name="org.bone.sphotoapi.model.Album">Album</a>]]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt"> Get User's Album list
+</p><div class="fullcomment"><div class="comment cmt"><p> Get User's Album list
+</p></div><dl class="paramcmts block"><dt class="param">userID</dt><dd class="cmt"><p>userID of album onwer, &quot;default&quot; if you want to fetch current user's alubm.</p></dd><dt>returns</dt><dd class="cmt"><p>Success[List[Album]] if everything is fine.
+</p></dd></dl></div>
+    </li><li name="org.bone.sphotoapi.api.API#getAuthorizationURL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getAuthorizationURL(params:(String,String)*):scala.util.Try[String]"></a>
+      <a id="getAuthorizationURL((String,String)*):Try[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAuthorizationURL</span><span class="params">(<span name="params">params: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
       <p class="shortcomment cmt"> Get authorization URL
@@ -307,22 +307,6 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="org.bone.sphotoapi.api.PicasaWebAPI#getPhotos" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getPhotos(albumID:String,userID:String,imageMaxSize:String):scala.util.Try[List[org.bone.sphotoapi.model.Photo]]"></a>
-      <a id="getPhotos(String,String,String):Try[List[Photo]]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">getPhotos</span><span class="params">(<span name="albumID">albumID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="userID">userID: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;default&quot;</span></span>, <span name="imageMaxSize">imageMaxSize: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;d&quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.List">List</span>[<a href="../model/Photo.html" class="extype" name="org.bone.sphotoapi.model.Photo">Photo</a>]]</span>
-      </span>
-      </h4>
-      <p class="shortcomment cmt"> Get Photos From Album
-</p><div class="fullcomment"><div class="comment cmt"><p> Get Photos From Album
-</p></div><dl class="paramcmts block"><dt class="param">albumID</dt><dd class="cmt"><p>The ID of album</p></dd><dt class="param">userID</dt><dd class="cmt"><p>The ID of album's owner</p></dd><dt>returns</dt><dd class="cmt"><p>Success[List[Photo]] if everything is fine.
-</p></dd></dl></div>
-    </li><li name="org.bone.sphotoapi.api.PicasaWebAPI#getPhotos" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getPhotos(albumID:String):scala.util.Try[List[org.bone.sphotoapi.model.Photo]]"></a>
       <a id="getPhotos(String):Try[List[Photo]]"></a>
       <h4 class="signature">
@@ -338,6 +322,22 @@
 </p><div class="fullcomment"><div class="comment cmt"><p> Get Photos From Album
 </p></div><dl class="paramcmts block"><dt class="param">albumID</dt><dd class="cmt"><p>The ID of album</p></dd><dt>returns</dt><dd class="cmt"><p>Success[List[Photo]] if everything is fine.
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.api.PicasaWebAPI">PicasaWebAPI</a> → <a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
+    </li><li name="org.bone.sphotoapi.api.PicasaWebAPI#getPhotos" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getPhotos(albumID:String,userID:String,imageMaxSize:String):scala.util.Try[List[org.bone.sphotoapi.model.Photo]]"></a>
+      <a id="getPhotos(String,String,String):Try[List[Photo]]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getPhotos</span><span class="params">(<span name="albumID">albumID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="userID">userID: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;default&quot;</span></span>, <span name="imageMaxSize">imageMaxSize: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;d&quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.List">List</span>[<a href="../model/Photo.html" class="extype" name="org.bone.sphotoapi.model.Photo">Photo</a>]]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt"> Get Photos From Album
+</p><div class="fullcomment"><div class="comment cmt"><p> Get Photos From Album
+</p></div><dl class="paramcmts block"><dt class="param">albumID</dt><dd class="cmt"><p>The ID of album</p></dd><dt class="param">userID</dt><dd class="cmt"><p>The ID of album's owner</p></dd><dt>returns</dt><dd class="cmt"><p>Success[List[Photo]] if everything is fine.
+</p></dd></dl></div>
     </li><li name="org.bone.sphotoapi.api.API#getRefreshToken" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getRefreshToken:Option[String]"></a>
       <a id="getRefreshToken:Option[String]"></a>
@@ -355,21 +355,21 @@
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Current refresh token
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
     </li><li name="org.bone.sphotoapi.api.PicasaWebAPI#getUserInfo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getUserInfo:scala.util.Try[(String,String)]"></a>
-      <a id="getUserInfo:Try[(String,String)]"></a>
+      <a id="getUserInfo():scala.util.Try[(String,String)]"></a>
+      <a id="getUserInfo():Try[(String,String)]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getUserInfo</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)]</span>
+        <span class="name">getUserInfo</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)]</span>
       </span>
       </h4>
       <p class="shortcomment cmt"> Get user information
 </p><div class="fullcomment"><div class="comment cmt"><p> Get user information
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Try[(google UserID, EMail)]
-</p></dd></dl></div>
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.api.PicasaWebAPI">PicasaWebAPI</a> → <a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <a id="hashCode():Int"></a>
@@ -435,6 +435,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="org.bone.sphotoapi.api.PicasaWebAPI#oauth" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="oauth:org.bone.sphotoapi.oauth.PicasaWebOAuth"></a>
+      <a id="oauth:PicasaWebOAuth"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">oauth</span><span class="result">: <a href="../oauth/PicasaWebOAuth.html" class="extype" name="org.bone.sphotoapi.oauth.PicasaWebOAuth">PicasaWebOAuth</a></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.api.PicasaWebAPI">PicasaWebAPI</a> → <a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

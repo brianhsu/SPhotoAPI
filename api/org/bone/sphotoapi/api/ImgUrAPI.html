@@ -278,15 +278,15 @@
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Success[List[Album]] if everything is fine.
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.api.ImgUrAPI">ImgUrAPI</a> → <a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
     </li><li name="org.bone.sphotoapi.api.API#getAuthorizationURL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getAuthorizationURL:scala.util.Try[String]"></a>
-      <a id="getAuthorizationURL:Try[String]"></a>
+      <a id="getAuthorizationURL(params:(String,String)*):scala.util.Try[String]"></a>
+      <a id="getAuthorizationURL((String,String)*):Try[String]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getAuthorizationURL</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">getAuthorizationURL</span><span class="params">(<span name="params">params: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
       <p class="shortcomment cmt"> Get authorization URL
@@ -338,6 +338,22 @@
  instead of direct user to ImgUr authorization page again.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Current refresh token
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
+    </li><li name="org.bone.sphotoapi.api.ImgUrAPI#getUserInfo" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="getUserInfo():scala.util.Try[(String,String)]"></a>
+      <a id="getUserInfo():Try[(String,String)]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getUserInfo</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)]</span>
+      </span>
+      </h4>
+      <p class="shortcomment cmt"> Get user information
+</p><div class="fullcomment"><div class="comment cmt"><p> Get user information
+</p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>Try[(google UserID, EMail)]
+</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.api.ImgUrAPI">ImgUrAPI</a> → <a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
     </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="hashCode():Int"></a>
       <a id="hashCode():Int"></a>
@@ -403,19 +419,21 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.bone.sphotoapi.api.API#oauth" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="oauth:org.bone.sphotoapi.oauth.OAuth"></a>
-      <a id="oauth:OAuth"></a>
+    </li><li name="org.bone.sphotoapi.api.ImgUrAPI#oauth" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="oauth:org.bone.sphotoapi.oauth.ImgUrOAuth"></a>
+      <a id="oauth:ImgUrOAuth"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">oauth</span><span class="result">: <a href="../oauth/OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></span>
+        <span class="name">oauth</span><span class="result">: <a href="../oauth/ImgUrOAuth.html" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
+      <p class="shortcomment cmt">ImgUrOAuth access object
+</p><div class="fullcomment"><div class="comment cmt"><p>ImgUrOAuth access object
+</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.api.ImgUrAPI">ImgUrAPI</a> → <a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
