@@ -22,7 +22,7 @@ import net.liftweb.json.JsonAST._
  *  
  *  @param  picasaWebOAuth  PicasaWebOAuth access object
  */
-class PicasaWebAPI private(override val oauth: PicasaWebOAuth) extends API(oauth)
+class PicasaWebAPI private(override val oauth: PicasaWebOAuth) extends API(oauth, "PicasaWeb")
 {
 
   /**
@@ -57,7 +57,7 @@ class PicasaWebAPI private(override val oauth: PicasaWebOAuth) extends API(oauth
     }
   }
 
-  override def getPhotos(albumID: String): Try[List[Photo]] = getPhotos(albumID, "default", "d")
+  override def getPhotos(albumID: String): Try[List[Photo]] = getPhotos(albumID, "default", "640u")
   override def getAlbums(): Try[List[Album]] = getAlbums("default")
 
   /**

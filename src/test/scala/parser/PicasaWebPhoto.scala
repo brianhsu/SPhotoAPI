@@ -20,7 +20,8 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
         mimeType = "image/jpeg",
         width = 704,
         height = 396,
-        link = "https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/1225635920875.jpg"
+        link = "https://picasaweb.google.com/106826117950796832071/NownoF#5277210049635511490",
+        imageURL = "https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/1225635920875.jpg"
       )
     }
 
@@ -33,7 +34,8 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
           mimeType = "image/jpeg",
           width = 800,
           height = 600,
-          link = "https://lh6.googleusercontent.com/-9IhwY3SQM0A/RhT8w1ROJrI/AAAAAAAAB28/qmeBrG0mHec/rene.jpg"
+          link = "https://picasaweb.google.com/106826117950796832071/NownoF#5049938998052398770",
+          imageURL = "https://lh6.googleusercontent.com/-9IhwY3SQM0A/RhT8w1ROJrI/AAAAAAAAB28/qmeBrG0mHec/rene.jpg"
         ),
         Photo(
           id = "5049939625117624050",
@@ -42,7 +44,8 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
           mimeType = "image/jpeg",
           width = 1600,
           height = 1200,
-          link = "https://lh4.googleusercontent.com/-RH0qG7I5qYs/RhT9VVROJvI/AAAAAAAAB3g/7Qv1rhJvClA/southDisk.jpg"
+          link = "https://picasaweb.google.com/106826117950796832071/NownoF#5049939625117624050",
+          imageURL = "https://lh4.googleusercontent.com/-RH0qG7I5qYs/RhT9VVROJvI/AAAAAAAAB3g/7Qv1rhJvClA/southDisk.jpg"
         ),
         Photo(
           id = "5253168305703161186",
@@ -51,7 +54,8 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
           mimeType = "image/jpeg",
           width = 345,
           height = 182,
-          link = "https://lh4.googleusercontent.com/-f4pyPQVDGwk/SOcAvdbHDWI/AAAAAAAAE1s/XVKP_naksxs/GPL3.jpg"
+          link = "https://picasaweb.google.com/106826117950796832071/NownoF#5253168305703161186",
+          imageURL = "https://lh4.googleusercontent.com/-f4pyPQVDGwk/SOcAvdbHDWI/AAAAAAAAE1s/XVKP_naksxs/GPL3.jpg"
         )
       )
     }

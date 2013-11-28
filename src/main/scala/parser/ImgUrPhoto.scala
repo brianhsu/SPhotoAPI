@@ -16,7 +16,8 @@ object ImgUrPhoto {
     mimeType = (item \ "type").text,
     width = (item \ "width").text.toInt,
     height = (item \ "height").text.toInt,
-    link = (item \ "link").text
+    link = "http://imgur.com/" + (item \ "link").text,
+    imageURL = (item \ "link").text
   )
 
   def fromXML(items: NodeSeq) = (items \\ "item").map(apply).toList

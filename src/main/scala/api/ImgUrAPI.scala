@@ -21,7 +21,7 @@ import java.util.Date
  *  
  *  @param  oauth  ImgUrOAuth access object
  */
-class ImgUrAPI private(override val oauth: ImgUrOAuth) extends API(oauth)
+class ImgUrAPI private(override val oauth: ImgUrOAuth) extends API(oauth, "ImgUr")
 {
 
   /**

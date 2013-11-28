@@ -18,7 +18,8 @@ object PicasaWebPhoto {
     mimeType = (item \ "content" \ "@type").text,
     width = prefixGPhoto(item \ "width").toInt,
     height = prefixGPhoto(item \ "height").toInt,
-    link = (item \ "content" \ "@src").text
+    link = (item \ "link").filter(link => (link \ "@rel").text == "alternate").map(_ \ "@href").mkString,
+    imageURL = (item \ "content" \ "@src").text
   )
 
   def fromXML(items: NodeSeq) = (items \\ "entry").map(apply).toList

@@ -16,7 +16,7 @@ import scala.util.Try
 import java.util.Date
 import java.net.URLEncoder
 
-abstract class API(val oauth: OAuth)
+abstract class API(val oauth: OAuth, val serviceName: String)
 {
   /**
    *  Get Photos From Album

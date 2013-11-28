@@ -20,7 +20,8 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
         mimeType = "image/jpeg",
         width = 1144,
         height = 1600,
-        link = "http://i.imgur.com/ssidO.jpg"
+        link = "http://i.imgur.com/ssidO",
+        imageURL = "http://i.imgur.com/ssidO.jpg"
       )
     }
 
@@ -33,7 +34,8 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
           mimeType = "image/jpeg",
           width = 1144,
           height = 1600,
-          link = "http://i.imgur.com/ssidO.jpg"
+          link = "http://i.imgur.com/ssidO",
+          imageURL = "http://i.imgur.com/ssidO.jpg"
         ),
         Photo(
           id = "8jUywIU",
@@ -42,7 +44,8 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
           mimeType = "image/jpeg",
           width = 1890,
           height = 2832,
-          link = "http://i.imgur.com/8jUywIU.jpg"
+          link = "http://i.imgur.com/8jUywIU",
+          imageURL = "http://i.imgur.com/8jUywIU.jpg"
         ),
         Photo(
           id = "w5BqcnG",
@@ -51,7 +54,8 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
           mimeType = "image/jpeg",
           width = 2832,
           height = 1890,
-          link = "http://i.imgur.com/w5BqcnG.jpg"
+          link = "http://i.imgur.com/w5BqcnG",
+          imageURL = "http://i.imgur.com/w5BqcnG.jpg"
         )
       )
     }
