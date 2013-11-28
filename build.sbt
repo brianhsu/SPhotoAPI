@@ -14,9 +14,9 @@ libraryDependencies ++= Seq(
   "net.liftweb" %% "lift-json" % "2.6-M2"
 )
 
-docDirectory in Compile <<= (baseDirectory / "api")
+target in Compile in doc <<= baseDirectory(_ / "api")
 
 publishTo := Some(
-  Resolver.sftp("bone", "bone.twbbs.org.tw", "public_html/ivy")
+  Resolver.sftp("bone", "bone.twbbs.org.tw", "public_html/ivy") as ("linuxhsu")
 )
 

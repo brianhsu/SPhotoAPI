@@ -58,8 +58,8 @@ abstract class API(val oauth: OAuth)
   def getAuthorizationURL(params: (String, String)*): Try[String] = Try {
     
     val urlParameter = params.map { case(name, value) => 
-      val encodedName = URLEncoder.encode(name)
-      val encodedValue = URLEncoder.encode(value)
+      val encodedName = URLEncoder.encode(name, "utf-8")
+      val encodedValue = URLEncoder.encode(value, "utf-8")
       s"$encodedName=$encodedValue" 
     }.mkString("&", "&", "")
 

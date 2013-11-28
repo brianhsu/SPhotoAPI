@@ -32,7 +32,7 @@ class PicasaWebAPI private(override val oauth: PicasaWebOAuth) extends API(oauth
    *  @param    userID      The ID of album's owner
    *  @return               Success[List[Photo]] if everything is fine.
    */
-  def getPhotos(albumID: String, userID: String = "default", imageMaxSize: String = "d"): Try[List[Photo]] = {
+  def getPhotos(albumID: String, userID: String = "default", imageMaxSize: String = "640u"): Try[List[Photo]] = {
 
     val endPoint = s"user/$userID/albumid/$albumID?imgmax=$imageMaxSize"
 
