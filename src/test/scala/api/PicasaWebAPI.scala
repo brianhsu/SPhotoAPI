@@ -16,7 +16,7 @@ object PicasaWebAPIMock extends PicasaWebOAuth(null, null, null, null) with Mock
     
     (url, verb) match {
       case ("user/1234", Verb.GET) => Success((200, "text/xml", albumsXML.toString))
-      case ("user/default/albumid/5678?imgmax=d", Verb.GET) => Success((200, "text/xml", photosXML.toString))
+      case ("user/default/albumid/5678?imgmax=d&thumbsize=200u,320u,640u,720u,1024u", Verb.GET) => Success((200, "text/xml", photosXML.toString))
       case ("https://www.googleapis.com/oauth2/v1/userinfo", Verb.GET) => Success(200, "json", userInfo)
       case _ => Success((404, "text/html", "NotFound"))
     }

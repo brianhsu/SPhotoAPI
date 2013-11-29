@@ -16,7 +16,7 @@ object ImgUrPhoto {
     mimeType = (item \ "type").text,
     width = (item \ "width").text.toInt,
     height = (item \ "height").text.toInt,
-    link = "http://imgur.com/" + (item \ "link").text,
+    link = "http://imgur.com/" + (item \ "id").text,
     imageURL = (item \ "link").text
   )
 

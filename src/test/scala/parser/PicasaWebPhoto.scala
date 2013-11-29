@@ -1,6 +1,7 @@
 package org.bone.sphotoapi.parser
 
 import org.bone.sphotoapi.model.Photo
+import org.bone.sphotoapi.model.Thumbnail
 
 import org.scalatest.FunSpec
 import org.scalatest.Matchers
@@ -21,7 +22,12 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
         width = 704,
         height = 396,
         link = "https://picasaweb.google.com/106826117950796832071/NownoF#5277210049635511490",
-        imageURL = "https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/1225635920875.jpg"
+        imageURL = "https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/1225635920875.jpg",
+        thumbnails = List(
+          Thumbnail("https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/s72/1225635920875.jpg", 72),
+          Thumbnail("https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/s144/1225635920875.jpg", 144),
+          Thumbnail("https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/s288/1225635920875.jpg", 288)
+        )
       )
     }
 
@@ -35,7 +41,12 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
           width = 800,
           height = 600,
           link = "https://picasaweb.google.com/106826117950796832071/NownoF#5049938998052398770",
-          imageURL = "https://lh6.googleusercontent.com/-9IhwY3SQM0A/RhT8w1ROJrI/AAAAAAAAB28/qmeBrG0mHec/rene.jpg"
+          imageURL = "https://lh6.googleusercontent.com/-9IhwY3SQM0A/RhT8w1ROJrI/AAAAAAAAB28/qmeBrG0mHec/rene.jpg",
+          thumbnails = List(
+            Thumbnail("https://lh6.googleusercontent.com/-9IhwY3SQM0A/RhT8w1ROJrI/AAAAAAAAB28/qmeBrG0mHec/s72/rene.jpg", 72),
+            Thumbnail("https://lh6.googleusercontent.com/-9IhwY3SQM0A/RhT8w1ROJrI/AAAAAAAAB28/qmeBrG0mHec/s144/rene.jpg", 144),
+            Thumbnail("https://lh6.googleusercontent.com/-9IhwY3SQM0A/RhT8w1ROJrI/AAAAAAAAB28/qmeBrG0mHec/s288/rene.jpg", 288)
+          )
         ),
         Photo(
           id = "5049939625117624050",
@@ -45,7 +56,12 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
           width = 1600,
           height = 1200,
           link = "https://picasaweb.google.com/106826117950796832071/NownoF#5049939625117624050",
-          imageURL = "https://lh4.googleusercontent.com/-RH0qG7I5qYs/RhT9VVROJvI/AAAAAAAAB3g/7Qv1rhJvClA/southDisk.jpg"
+          imageURL = "https://lh4.googleusercontent.com/-RH0qG7I5qYs/RhT9VVROJvI/AAAAAAAAB3g/7Qv1rhJvClA/southDisk.jpg",
+          thumbnails = List(
+            Thumbnail("https://lh4.googleusercontent.com/-RH0qG7I5qYs/RhT9VVROJvI/AAAAAAAAB3g/7Qv1rhJvClA/s72/southDisk.jpg", 72),
+            Thumbnail("https://lh4.googleusercontent.com/-RH0qG7I5qYs/RhT9VVROJvI/AAAAAAAAB3g/7Qv1rhJvClA/s144/southDisk.jpg", 144),
+            Thumbnail("https://lh4.googleusercontent.com/-RH0qG7I5qYs/RhT9VVROJvI/AAAAAAAAB3g/7Qv1rhJvClA/s288/southDisk.jpg", 288)
+          )
         ),
         Photo(
           id = "5253168305703161186",
@@ -55,7 +71,13 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
           width = 345,
           height = 182,
           link = "https://picasaweb.google.com/106826117950796832071/NownoF#5253168305703161186",
-          imageURL = "https://lh4.googleusercontent.com/-f4pyPQVDGwk/SOcAvdbHDWI/AAAAAAAAE1s/XVKP_naksxs/GPL3.jpg"
+          imageURL = "https://lh4.googleusercontent.com/-f4pyPQVDGwk/SOcAvdbHDWI/AAAAAAAAE1s/XVKP_naksxs/GPL3.jpg",
+          thumbnails = List(
+            Thumbnail("https://lh4.googleusercontent.com/-f4pyPQVDGwk/SOcAvdbHDWI/AAAAAAAAE1s/XVKP_naksxs/s72/GPL3.jpg", 72),
+            Thumbnail("https://lh4.googleusercontent.com/-f4pyPQVDGwk/SOcAvdbHDWI/AAAAAAAAE1s/XVKP_naksxs/s144/GPL3.jpg", 144),
+            Thumbnail("https://lh4.googleusercontent.com/-f4pyPQVDGwk/SOcAvdbHDWI/AAAAAAAAE1s/XVKP_naksxs/s288/GPL3.jpg", 288) 
+
+          )
         )
       )
     }
