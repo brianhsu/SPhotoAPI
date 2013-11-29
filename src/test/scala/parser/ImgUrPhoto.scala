@@ -1,6 +1,7 @@
 package org.bone.sphotoapi.parser
 
 import org.bone.sphotoapi.model.Photo
+import org.bone.sphotoapi.model.Thumbnail
 
 import org.scalatest.FunSpec
 import org.scalatest.Matchers
@@ -21,7 +22,13 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
         width = 1144,
         height = 1600,
         link = "http://imgur.com/ssidO",
-        imageURL = "http://i.imgur.com/ssidO.jpg"
+        imageURL = "http://i.imgur.com/ssidO.jpg",
+        thumbnails = List(
+          Thumbnail("http://i.imgur.com/ssidOt.jpg", 160),
+          Thumbnail("http://i.imgur.com/ssidOm.jpg", 320),
+          Thumbnail("http://i.imgur.com/ssidOl.jpg", 640),
+          Thumbnail("http://i.imgur.com/ssidOh.jpg", 1024)
+        )
       )
     }
 
@@ -35,7 +42,13 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
           width = 1144,
           height = 1600,
           link = "http://imgur.com/ssidO",
-          imageURL = "http://i.imgur.com/ssidO.jpg"
+          imageURL = "http://i.imgur.com/ssidO.jpg",
+          thumbnails = List(
+            Thumbnail("http://i.imgur.com/ssidOt.jpg", 160),
+            Thumbnail("http://i.imgur.com/ssidOm.jpg", 320),
+            Thumbnail("http://i.imgur.com/ssidOl.jpg", 640),
+            Thumbnail("http://i.imgur.com/ssidOh.jpg", 1024)
+          )
         ),
         Photo(
           id = "8jUywIU",
@@ -45,7 +58,13 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
           width = 1890,
           height = 2832,
           link = "http://imgur.com/8jUywIU",
-          imageURL = "http://i.imgur.com/8jUywIU.jpg"
+          imageURL = "http://i.imgur.com/8jUywIU.jpg",
+          thumbnails = List(
+            Thumbnail("http://i.imgur.com/8jUywIUt.jpg", 160),
+            Thumbnail("http://i.imgur.com/8jUywIUm.jpg", 320),
+            Thumbnail("http://i.imgur.com/8jUywIUl.jpg", 640),
+            Thumbnail("http://i.imgur.com/8jUywIUh.jpg", 1024)
+          )
         ),
         Photo(
           id = "w5BqcnG",
@@ -55,7 +74,13 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
           width = 2832,
           height = 1890,
           link = "http://imgur.com/w5BqcnG",
-          imageURL = "http://i.imgur.com/w5BqcnG.jpg"
+          imageURL = "http://i.imgur.com/w5BqcnG.jpg",
+          thumbnails = List(
+            Thumbnail("http://i.imgur.com/w5BqcnGt.jpg", 160),
+            Thumbnail("http://i.imgur.com/w5BqcnGm.jpg", 320),
+            Thumbnail("http://i.imgur.com/w5BqcnGl.jpg", 640),
+            Thumbnail("http://i.imgur.com/w5BqcnGh.jpg", 1024)
+          )
         )
       )
     }
