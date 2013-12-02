@@ -21,17 +21,19 @@ object ImgUrPhoto {
     val id = (item \ "id").text
     val imageURL = (item \ "link").text
     val thumbnailList = List("t" -> 160, "m" -> 320, "l" -> 640, "h" -> 1024).map(thumbnailURL(imageURL))
+    val datetime = new Date((item \ "datetime").text.toLong * 1000)
 
     new Photo(
       id = id,
       title = Option((item \ "title").text).filterNot(_.isEmpty),
-      timestamp = new Date((item \ "datetime").text.toLong * 1000),
+      timestamp = datetime,
       mimeType = (item \ "type").text,
       width = (item \ "width").text.toInt,
       height = (item \ "height").text.toInt,
       link = "http://imgur.com/" + id,
       imageURL = imageURL,
-      thumbnails = thumbnailList
+      thumbnails = thumbnailList,
+      lastUpdated = datetime
     )
   }
 

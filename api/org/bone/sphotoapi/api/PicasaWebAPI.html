@@ -323,15 +323,15 @@
 </p></div><dl class="paramcmts block"><dt class="param">albumID</dt><dd class="cmt"><p>The ID of album</p></dd><dt>returns</dt><dd class="cmt"><p>Success[List[Photo]] if everything is fine.
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.api.PicasaWebAPI">PicasaWebAPI</a> → <a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
     </li><li name="org.bone.sphotoapi.api.PicasaWebAPI#getPhotos" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getPhotos(albumID:String,userID:String,imageMaxSize:String):scala.util.Try[List[org.bone.sphotoapi.model.Photo]]"></a>
-      <a id="getPhotos(String,String,String):Try[List[Photo]]"></a>
+      <a id="getPhotos(albumID:String,userID:String,imageMaxSize:String,thumbSize:List[org.bone.sphotoapi.api.PicasaWebAPI.Thumbnail]):scala.util.Try[List[org.bone.sphotoapi.model.Photo]]"></a>
+      <a id="getPhotos(String,String,String,List[Thumbnail]):Try[List[Photo]]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getPhotos</span><span class="params">(<span name="albumID">albumID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="userID">userID: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;default&quot;</span></span>, <span name="imageMaxSize">imageMaxSize: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;640u&quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.List">List</span>[<a href="../model/Photo.html" class="extype" name="org.bone.sphotoapi.model.Photo">Photo</a>]]</span>
+        <span class="name">getPhotos</span><span class="params">(<span name="albumID">albumID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="userID">userID: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;default&quot;</span></span>, <span name="imageMaxSize">imageMaxSize: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;d&quot;</span></span>, <span name="thumbSize">thumbSize: <span class="extype" name="scala.List">List</span>[<a href="PicasaWebAPI$$Thumbnail.html" class="extype" name="org.bone.sphotoapi.api.PicasaWebAPI.Thumbnail">Thumbnail</a>] = <span class="symbol"><span class="name"><a href="PicasaWebAPI$.html">DefaultThumbs</a></span></span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.List">List</span>[<a href="../model/Photo.html" class="extype" name="org.bone.sphotoapi.model.Photo">Photo</a>]]</span>
       </span>
       </h4>
       <p class="shortcomment cmt"> Get Photos From Album
@@ -448,6 +448,19 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.api.PicasaWebAPI">PicasaWebAPI</a> → <a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
+    </li><li name="org.bone.sphotoapi.api.API#serviceName" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="serviceName:String"></a>
+      <a id="serviceName:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">serviceName</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="API.html" class="extype" name="org.bone.sphotoapi.api.API">API</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

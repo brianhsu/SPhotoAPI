@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>Photo - org.bone.sphotoapi.model.Photo</title>
-          <meta name="description" content="Photo - org.bone.sphotoapi.model.Photo" />
-          <meta name="keywords" content="Photo org.bone.sphotoapi.model.Photo" />
+          <title>Thumbnail - org.bone.sphotoapi.model.Thumbnail</title>
+          <meta name="description" content="Thumbnail - org.bone.sphotoapi.model.Thumbnail" />
+          <meta name="keywords" content="Thumbnail org.bone.sphotoapi.model.Thumbnail" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'org.bone.sphotoapi.model.Photo';
+            var hash = 'org.bone.sphotoapi.model.Thumbnail';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -26,7 +26,7 @@
       <div id="definition">
         <img src="../../../../lib/class_big.png" />
         <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.bone">bone</a>.<a href="../package.html" class="extype" name="org.bone.sphotoapi">sphotoapi</a>.<a href="package.html" class="extype" name="org.bone.sphotoapi.model">model</a></p>
-        <h1>Photo</h1>
+        <h1>Thumbnail</h1>
       </div>
 
       <h4 id="signature" class="signature">
@@ -35,7 +35,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Photo</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="title">title: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="timestamp">timestamp: <span class="extype" name="java.util.Date">Date</span></span>, <span name="mimeType">mimeType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="width">width: <span class="extype" name="scala.Int">Int</span></span>, <span name="height">height: <span class="extype" name="scala.Int">Int</span></span>, <span name="link">link: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="imageURL">imageURL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="thumbnails">thumbnails: <span class="extype" name="scala.List">List</span>[<a href="Thumbnail.html" class="extype" name="org.bone.sphotoapi.model.Thumbnail">Thumbnail</a>] = <span class="symbol">immutable.this.Nil</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Thumbnail</span><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="maxSize">maxSize: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -59,7 +59,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.bone.sphotoapi.model.Photo"><span>Photo</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.bone.sphotoapi.model.Thumbnail"><span>Thumbnail</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -79,16 +79,16 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="org.bone.sphotoapi.model.Photo#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(id:String,title:Option[String],timestamp:java.util.Date,mimeType:String,width:Int,height:Int,link:String,imageURL:String,thumbnails:List[org.bone.sphotoapi.model.Thumbnail]):org.bone.sphotoapi.model.Photo"></a>
-      <a id="&lt;init&gt;:Photo"></a>
+              <ol><li name="org.bone.sphotoapi.model.Thumbnail#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(url:String,maxSize:Int):org.bone.sphotoapi.model.Thumbnail"></a>
+      <a id="&lt;init&gt;:Thumbnail"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Photo</span><span class="params">(<span name="id">id: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="title">title: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="timestamp">timestamp: <span class="extype" name="java.util.Date">Date</span></span>, <span name="mimeType">mimeType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="width">width: <span class="extype" name="scala.Int">Int</span></span>, <span name="height">height: <span class="extype" name="scala.Int">Int</span></span>, <span name="link">link: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="imageURL">imageURL: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="thumbnails">thumbnails: <span class="extype" name="scala.List">List</span>[<a href="Thumbnail.html" class="extype" name="org.bone.sphotoapi.model.Thumbnail">Thumbnail</a>] = <span class="symbol">immutable.this.Nil</span></span>)</span>
+        <span class="name">Thumbnail</span><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="maxSize">maxSize: <span class="extype" name="scala.Int">Int</span></span>)</span>
       </span>
       </h4>
       
@@ -243,45 +243,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.bone.sphotoapi.model.Photo#height" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="height:Int"></a>
-      <a id="height:Int"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">height</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.bone.sphotoapi.model.Photo#id" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="id:String"></a>
-      <a id="id:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">id</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.bone.sphotoapi.model.Photo#imageURL" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="imageURL:String"></a>
-      <a id="imageURL:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">imageURL</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4>
-      
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -295,29 +256,16 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="org.bone.sphotoapi.model.Photo#link" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="link:String"></a>
-      <a id="link:String"></a>
+    </li><li name="org.bone.sphotoapi.model.Thumbnail#maxSize" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="maxSize:Int"></a>
+      <a id="maxSize:Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">link</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.bone.sphotoapi.model.Photo#mimeType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="mimeType:String"></a>
-      <a id="mimeType:String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">mimeType</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+        <span class="name">maxSize</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
       
@@ -373,42 +321,16 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.bone.sphotoapi.model.Photo#thumbnails" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="thumbnails:List[org.bone.sphotoapi.model.Thumbnail]"></a>
-      <a id="thumbnails:List[Thumbnail]"></a>
+    </li><li name="org.bone.sphotoapi.model.Thumbnail#url" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="url:String"></a>
+      <a id="url:String"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">val</span>
       </span>
       <span class="symbol">
-        <span class="name">thumbnails</span><span class="result">: <span class="extype" name="scala.List">List</span>[<a href="Thumbnail.html" class="extype" name="org.bone.sphotoapi.model.Thumbnail">Thumbnail</a>]</span>
-      </span>
-      </h4>
-      
-    </li><li name="org.bone.sphotoapi.model.Photo#timestamp" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="timestamp:java.util.Date"></a>
-      <a id="timestamp:Date"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">timestamp</span><span class="result">: <span class="extype" name="java.util.Date">Date</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.bone.sphotoapi.model.Photo#title" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="title:Option[String]"></a>
-      <a id="title:Option[String]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">title</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">url</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
       
@@ -469,19 +391,6 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.bone.sphotoapi.model.Photo#width" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="width:Int"></a>
-      <a id="width:Int"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">width</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
-      </span>
-      </h4>
-      
     </li></ol>
             </div>
 

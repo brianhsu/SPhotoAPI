@@ -7,9 +7,12 @@ import scala.xml.NodeSeq
 import scala.xml.Node
 
 import java.util.Date
+import java.text.SimpleDateFormat
 
 object PicasaWebPhoto {
   
+  val dateFormatter = new SimpleDateFormat("""yyyy-MM-dd'T'HH:mm:ss.SSS'Z'""")
+
   def prefixGPhoto(nodes: NodeSeq) = nodes.filter(_.prefix == "gphoto").text
 
   def toThumbnail(item: Node): Thumbnail = {
@@ -20,6 +23,8 @@ object PicasaWebPhoto {
     Thumbnail(url, width max height)
   }
 
+  def parseDate(dateTime: String) = dateFormatter.parse(dateTime)
+
   def apply(item: Node): Photo = new Photo(
     id = prefixGPhoto(item \ "id"),
     title = Option((item \ "summary").text).filterNot(_.isEmpty),
@@ -29,7 +34,9 @@ object PicasaWebPhoto {
     height = prefixGPhoto(item \ "height").toInt,
     link = (item \ "link").filter(link => (link \ "@rel").text == "alternate").map(_ \ "@href").mkString,
     imageURL = (item \ "content" \ "@src").text,
-    thumbnails = (item \\ "thumbnail").map(toThumbnail).toList
+    thumbnails = (item \\ "thumbnail").map(toThumbnail).toList,
+    lastUpdated = parseDate((item \ "updated").text)
+
   )
 
   def fromXML(items: NodeSeq) = (items \\ "entry").map(apply).toList

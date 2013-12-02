@@ -27,7 +27,8 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
           Thumbnail("https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/s72/1225635920875.jpg", 72),
           Thumbnail("https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/s144/1225635920875.jpg", 144),
           Thumbnail("https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/s288/1225635920875.jpg", 288)
-        )
+        ),
+        lastUpdated = new Date(1384719124426L)
       )
     }
 
@@ -46,7 +47,8 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
             Thumbnail("https://lh6.googleusercontent.com/-9IhwY3SQM0A/RhT8w1ROJrI/AAAAAAAAB28/qmeBrG0mHec/s72/rene.jpg", 72),
             Thumbnail("https://lh6.googleusercontent.com/-9IhwY3SQM0A/RhT8w1ROJrI/AAAAAAAAB28/qmeBrG0mHec/s144/rene.jpg", 144),
             Thumbnail("https://lh6.googleusercontent.com/-9IhwY3SQM0A/RhT8w1ROJrI/AAAAAAAAB28/qmeBrG0mHec/s288/rene.jpg", 288)
-          )
+          ),
+          lastUpdated = new Date(1384719124426L)
         ),
         Photo(
           id = "5049939625117624050",
@@ -61,7 +63,8 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
             Thumbnail("https://lh4.googleusercontent.com/-RH0qG7I5qYs/RhT9VVROJvI/AAAAAAAAB3g/7Qv1rhJvClA/s72/southDisk.jpg", 72),
             Thumbnail("https://lh4.googleusercontent.com/-RH0qG7I5qYs/RhT9VVROJvI/AAAAAAAAB3g/7Qv1rhJvClA/s144/southDisk.jpg", 144),
             Thumbnail("https://lh4.googleusercontent.com/-RH0qG7I5qYs/RhT9VVROJvI/AAAAAAAAB3g/7Qv1rhJvClA/s288/southDisk.jpg", 288)
-          )
+          ),
+          lastUpdated = new Date(1384719124426L)
         ),
         Photo(
           id = "5253168305703161186",
@@ -77,7 +80,9 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
             Thumbnail("https://lh4.googleusercontent.com/-f4pyPQVDGwk/SOcAvdbHDWI/AAAAAAAAE1s/XVKP_naksxs/s144/GPL3.jpg", 144),
             Thumbnail("https://lh4.googleusercontent.com/-f4pyPQVDGwk/SOcAvdbHDWI/AAAAAAAAE1s/XVKP_naksxs/s288/GPL3.jpg", 288) 
 
-          )
+          ),
+          lastUpdated = new Date(1384719124426L)
+
         )
       )
     }

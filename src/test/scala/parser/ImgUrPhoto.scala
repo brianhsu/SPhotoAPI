@@ -28,7 +28,8 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
           Thumbnail("http://i.imgur.com/ssidOm.jpg", 320),
           Thumbnail("http://i.imgur.com/ssidOl.jpg", 640),
           Thumbnail("http://i.imgur.com/ssidOh.jpg", 1024)
-        )
+        ),
+        lastUpdated = new Date(1285674177 * 1000L)
       )
     }
 
@@ -48,7 +49,8 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
             Thumbnail("http://i.imgur.com/ssidOm.jpg", 320),
             Thumbnail("http://i.imgur.com/ssidOl.jpg", 640),
             Thumbnail("http://i.imgur.com/ssidOh.jpg", 1024)
-          )
+          ),
+          lastUpdated = new Date(1285674177 * 1000L)
         ),
         Photo(
           id = "8jUywIU",
@@ -64,7 +66,8 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
             Thumbnail("http://i.imgur.com/8jUywIUm.jpg", 320),
             Thumbnail("http://i.imgur.com/8jUywIUl.jpg", 640),
             Thumbnail("http://i.imgur.com/8jUywIUh.jpg", 1024)
-          )
+          ),
+          lastUpdated = new Date(1365764935 * 1000L)
         ),
         Photo(
           id = "w5BqcnG",
@@ -80,7 +83,8 @@ class ImgUrPhotoSpec extends FunSpec with Matchers {
             Thumbnail("http://i.imgur.com/w5BqcnGm.jpg", 320),
             Thumbnail("http://i.imgur.com/w5BqcnGl.jpg", 640),
             Thumbnail("http://i.imgur.com/w5BqcnGh.jpg", 1024)
-          )
+          ),
+          lastUpdated = new Date(1365764958 * 1000L)
         )
       )
     }
