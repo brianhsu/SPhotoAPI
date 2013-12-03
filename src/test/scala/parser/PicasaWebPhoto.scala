@@ -1,6 +1,7 @@
 package org.bone.sphotoapi.parser
 
 import org.bone.sphotoapi.model.Photo
+import org.bone.sphotoapi.model.GPSPoint
 import org.bone.sphotoapi.model.Thumbnail
 
 import org.scalatest.FunSpec
@@ -28,7 +29,8 @@ class PicasaWebPhotoSpec extends FunSpec with Matchers {
           Thumbnail("https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/s144/1225635920875.jpg", 144),
           Thumbnail("https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/s288/1225635920875.jpg", 288)
         ),
-        lastUpdated = new Date(1384719124426L)
+        lastUpdated = new Date(1384719124426L),
+        location = Some(GPSPoint(-24.4471495, 133.8134765))
       )
     }
 
@@ -136,6 +138,11 @@ object PicasaWebPhotoSpec extends FunSpec with Matchers {
         <media:thumbnail width="288" height="162" url="https://lh6.googleusercontent.com/-n-I-1ugzOkw/STxqlI2lbMI/AAAAAAAAGbY/HB7_al2uLto/s288/1225635920875.jpg"> </media:thumbnail>
         <media:title type="plain">1225635920875.jpg</media:title>
       </media:group>
+      <georss:where>
+        <gml:Point>
+          <gml:pos>-24.4471495 133.8134765</gml:pos>
+        </gml:Point>
+      </georss:where>
     </entry>
 
 
