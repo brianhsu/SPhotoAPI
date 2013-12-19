@@ -7,6 +7,7 @@ import org.bone.sphotoapi.model.Thumbnail
 
 import scala.xml.NodeSeq
 import scala.xml.Node
+import scala.util.Try
 
 import java.util.Date
 import java.text.SimpleDateFormat
@@ -18,7 +19,7 @@ object FlickrPhoto {
     dateFormatter.parse(dateString)
   }
 
-  def parseThumbnail(postfix: String, item: Node) = {
+  def parseThumbnail(postfix: String, item: Node) = Try {
     val thumbnailURL = (item \ s"@url_$postfix").text
     val width = (item \ s"@width_$postfix").text.toInt
     val height = (item \ s"@height_$postfix").text.toInt
@@ -38,7 +39,12 @@ object FlickrPhoto {
 
     val id = (item \ "@id").text
     val linkURL = s"http://www.flickr.com/photos/$username/$id/in/set-$albumID"
-    val thumbnailList = List("sq", "t", "s", "m").map(parseThumbnail(_, item))
+    val thumbnailList = List(
+      parseThumbnail("sq", item),
+      parseThumbnail("t", item),
+      parseThumbnail("s", item),
+      parseThumbnail("m", item)
+    ).filter(_.isSuccess).map(_.get)
 
     new Photo(
       id = id,

@@ -13,6 +13,7 @@ import net.liftweb.json.JsonParser
 import net.liftweb.json.JsonAST._
 
 import java.util.Date
+import java.net.URLEncoder
 
 /**
  *  Used for Unit-test only.
@@ -26,6 +27,8 @@ abstract class OAuth {
 
   def appKey: String
   def appSecret: String
+
+  private var requestToken: Option[Token] = None
 
   protected def prefixURL: String
   protected def refreshURL: String
@@ -70,7 +73,7 @@ abstract class OAuth {
   {
     Try {
 
-      if (System.currentTimeMillis > expireAt.getTime) {
+      if (service.getVersion == "2.0" && System.currentTimeMillis > expireAt.getTime) {
         refreshAccessToken()
       }
 
@@ -92,12 +95,48 @@ abstract class OAuth {
    */
   def getRefreshToken = refreshToken
 
+  def getAuthorizationURLv1(params: (String, String)*) = {
+
+    val urlParameter = params.map { case(name, value) => 
+      val encodedName = URLEncoder.encode(name, "utf-8")
+      val encodedValue = URLEncoder.encode(value, "utf-8")
+      s"$encodedName=$encodedValue" 
+    }.mkString("&", "&", "")
+
+    this.requestToken = Some(service.getRequestToken)
+
+    params match {
+      case Nil => service.getAuthorizationUrl(requestToken.get)
+      case _   => service.getAuthorizationUrl(requestToken.get) + urlParameter
+    }
+
+  }
+
+  def getAuthorizationURLv2(params: (String, String)*) = {
+    val urlParameter = params.map { case(name, value) => 
+      val encodedName = URLEncoder.encode(name, "utf-8")
+      val encodedValue = URLEncoder.encode(value, "utf-8")
+      s"$encodedName=$encodedValue" 
+    }.mkString("&", "&", "")
+
+    params match {
+      case Nil => service.getAuthorizationUrl(null)
+      case _   => service.getAuthorizationUrl(null) + urlParameter
+    }
+  }
+
   /**
    *  Get authorization URL
    *
    *  @return   The ImgUr authorization page if success.
    */
-  def getAuthorizationURL: Try[String] = Try(service.getAuthorizationUrl(null))
+  def getAuthorizationURL(params: (String, String)*): Try[String] = Try {
+    if (service.getVersion == "2.0") {
+      getAuthorizationURLv2(params: _*)
+    } else {
+      getAuthorizationURLv1(params: _*)
+    }
+  }
 
   /**
    *  Authorize ImgUr
@@ -106,17 +145,27 @@ abstract class OAuth {
    *  @return             Success[Unit] if success.
    */
   def authorize(verifyCode: String): Try[Unit] = Try {
-    
-    val currentTime = System.currentTimeMillis
+
     val verifier = new Verifier(verifyCode)
-    val accessToken = service.getAccessToken(null, verifier)
-    val jsonResponse = JsonParser.parse(accessToken.getRawResponse)
 
-    val (rawAccessToken, refreshToken, expiresAt) = OAuth.parseTokenJSON(jsonResponse)
+    requestToken match {
+      case Some(token) =>
+        val accessToken = service.getAccessToken(token, verifier)
+        this.accessToken = Some(accessToken)
 
-    this.accessToken = Some(accessToken)
-    this.refreshToken = refreshToken
-    this.expireAt = new Date(currentTime + expiresAt * 1000)
+      case None => {
+        val currentTime = System.currentTimeMillis
+        val accessToken = service.getAccessToken(null, verifier)
+        val jsonResponse = JsonParser.parse(accessToken.getRawResponse)
+
+        val (rawAccessToken, refreshToken, expiresAt) = OAuth.parseTokenJSON(jsonResponse)
+
+        this.accessToken = Some(accessToken)
+        this.refreshToken = refreshToken
+        this.expireAt = new Date(currentTime + expiresAt * 1000)
+      }
+    }
+
   }
 
   /**
