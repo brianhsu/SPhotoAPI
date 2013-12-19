@@ -29,7 +29,7 @@ object FlickrPhoto {
     val isPublic = (item \ "@geo_is_public").text == "1"
     
     isPublic match {
-      case true  => Some(GPSPoint((item \ "@latitude").text.toLong, (item \ "@longitude").text.toLong))
+      case true  => Some(GPSPoint((item \ "@latitude").text.toDouble, (item \ "@longitude").text.toDouble))
       case false => None
     }
   }
@@ -50,7 +50,8 @@ object FlickrPhoto {
       link = linkURL,
       imageURL = (item \ "@url_o").text,
       thumbnails = thumbnailList,
-      lastUpdated = new Date((item \ "@lastupdate").text.toLong * 1000L)
+      lastUpdated = new Date((item \ "@lastupdate").text.toLong * 1000L),
+      location = parseGPSPoint(item)
     )
   }
 

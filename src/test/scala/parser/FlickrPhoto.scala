@@ -81,9 +81,9 @@ class FlickrPhotoSpec extends FunSpec with Matchers {
           imageURL = "http://farm3.staticflickr.com/2829/11447097526_49f34cbc93_o.jpg",
           thumbnails = List(
             Thumbnail("http://farm3.staticflickr.com/2829/11447097526_8050cc19b1_s.jpg", 75),
-            Thumbnail("http://farm3.staticflickr.com/2829/11447097526_8050cc19b1_t.jpg", 75),
-            Thumbnail("http://farm3.staticflickr.com/2829/11447097526_8050cc19b1_m.jpg", 180),
-            Thumbnail("http://farm3.staticflickr.com/2829/11447097526_8050cc19b1.jpg", 375)
+            Thumbnail("http://farm3.staticflickr.com/2829/11447097526_8050cc19b1_t.jpg", 100),
+            Thumbnail("http://farm3.staticflickr.com/2829/11447097526_8050cc19b1_m.jpg", 240),
+            Thumbnail("http://farm3.staticflickr.com/2829/11447097526_8050cc19b1.jpg", 500)
           ),
           lastUpdated = new Date(1387438879 * 1000L),
           location = Some(GPSPoint(-33.856087,151.219925))
