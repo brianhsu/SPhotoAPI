@@ -55,19 +55,7 @@ abstract class API(val oauth: OAuth, val serviceName: String)
    *
    *  @return   The ImgUr authorization page if success.
    */
-  def getAuthorizationURL(params: (String, String)*): Try[String] = Try {
-    
-    val urlParameter = params.map { case(name, value) => 
-      val encodedName = URLEncoder.encode(name, "utf-8")
-      val encodedValue = URLEncoder.encode(value, "utf-8")
-      s"$encodedName=$encodedValue" 
-    }.mkString("&", "&", "")
-
-    params match {
-      case Nil => oauth.service.getAuthorizationUrl(null)
-      case _   => oauth.service.getAuthorizationUrl(null) + urlParameter
-    }
-  }
+  def getAuthorizationURL(params: (String, String)*): Try[String] = oauth.getAuthorizationURL(params: _*)
 
   /**
    *  Authorize ImgUr
@@ -75,19 +63,6 @@ abstract class API(val oauth: OAuth, val serviceName: String)
    *  @param  verifyCode  The pin / code returned by ImgUr
    *  @return             Success[Unit] if success.
    */
-  def authorize(verifyCode: String): Try[Unit] = Try {
-    
-    val currentTime = System.currentTimeMillis
-    val verifier = new Verifier(verifyCode)
-    val accessToken = oauth.service.getAccessToken(null, verifier)
-    val jsonResponse = JsonParser.parse(accessToken.getRawResponse)
-
-    val (rawAccessToken, refreshToken, expiresAt) = OAuth.parseTokenJSON(jsonResponse)
-
-    oauth.accessToken = Some(accessToken)
-    oauth.refreshToken = refreshToken
-    oauth.expireAt = new Date(currentTime + expiresAt * 1000)
-  }
-
+  def authorize(verifyCode: String): Try[Unit] = oauth.authorize(verifyCode)
 }
 
