@@ -45,7 +45,7 @@
           <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div><div class="toggleContainer block">
           <span class="toggle">Known Subclasses</span>
-          <div class="subClasses hiddenContent"><a href="ImgUrOAuth.html" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a>, <a href="PicasaWebOAuth.html" class="extype" name="org.bone.sphotoapi.oauth.PicasaWebOAuth">PicasaWebOAuth</a></div>
+          <div class="subClasses hiddenContent"><a href="FlickrOAuth.html" class="extype" name="org.bone.sphotoapi.oauth.FlickrOAuth">FlickrOAuth</a>, <a href="ImgUrOAuth.html" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a>, <a href="PicasaWebOAuth.html" class="extype" name="org.bone.sphotoapi.oauth.PicasaWebOAuth">PicasaWebOAuth</a></div>
         </div></div>
         
 
@@ -386,21 +386,47 @@
               
         </dd></dl></div>
     </li><li name="org.bone.sphotoapi.oauth.OAuth#getAuthorizationURL" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getAuthorizationURL:scala.util.Try[String]"></a>
-      <a id="getAuthorizationURL:Try[String]"></a>
+      <a id="getAuthorizationURL(params:(String,String)*):scala.util.Try[String]"></a>
+      <a id="getAuthorizationURL((String,String)*):Try[String]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">getAuthorizationURL</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+        <span class="name">getAuthorizationURL</span><span class="params">(<span name="params">params: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
       <p class="shortcomment cmt"> Get authorization URL
 </p><div class="fullcomment"><div class="comment cmt"><p> Get authorization URL
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The ImgUr authorization page if success.
 </p></dd></dl></div>
+    </li><li name="org.bone.sphotoapi.oauth.OAuth#getAuthorizationURLv1" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getAuthorizationURLv1(params:(String,String)*):String"></a>
+      <a id="getAuthorizationURLv1((String,String)*):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAuthorizationURLv1</span><span class="params">(<span name="params">params: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bone.sphotoapi.oauth.OAuth#getAuthorizationURLv2" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="getAuthorizationURLv2(params:(String,String)*):String"></a>
+      <a id="getAuthorizationURLv2((String,String)*):String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">getAuthorizationURLv2</span><span class="params">(<span name="params">params: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4>
+      
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>

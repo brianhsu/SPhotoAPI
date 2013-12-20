@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>ImgUrOAuth - org.bone.sphotoapi.oauth.ImgUrOAuth</title>
-          <meta name="description" content="ImgUrOAuth - org.bone.sphotoapi.oauth.ImgUrOAuth" />
-          <meta name="keywords" content="ImgUrOAuth org.bone.sphotoapi.oauth.ImgUrOAuth" />
+          <title>FlickrOAuth - org.bone.sphotoapi.oauth.FlickrOAuth</title>
+          <meta name="description" content="FlickrOAuth - org.bone.sphotoapi.oauth.FlickrOAuth" />
+          <meta name="keywords" content="FlickrOAuth org.bone.sphotoapi.oauth.FlickrOAuth" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'org.bone.sphotoapi.oauth.ImgUrOAuth';
+            var hash = 'org.bone.sphotoapi.oauth.FlickrOAuth';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -26,7 +26,7 @@
       <div id="definition">
         <img src="../../../../lib/class_big.png" />
         <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.bone">bone</a>.<a href="../package.html" class="extype" name="org.bone.sphotoapi">sphotoapi</a>.<a href="package.html" class="extype" name="org.bone.sphotoapi.oauth">oauth</a></p>
-        <h1>ImgUrOAuth</h1>
+        <h1>FlickrOAuth</h1>
       </div>
 
       <h4 id="signature" class="signature">
@@ -35,12 +35,11 @@
         <span class="kind">class</span>
       </span>
       <span class="symbol">
-        <span class="name">ImgUrOAuth</span><span class="result"> extends <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></span>
+        <span class="name">FlickrOAuth</span><span class="result"> extends <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></span>
       </span>
       </h4>
       
-          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p> ImgUr OAuth Helper object
-</p></div><div class="toggleContainer block">
+          <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -60,7 +59,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.bone.sphotoapi.oauth.ImgUrOAuth"><span>ImgUrOAuth</span></li><li class="in" name="org.bone.sphotoapi.oauth.OAuth"><span>OAuth</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.bone.sphotoapi.oauth.FlickrOAuth"><span>FlickrOAuth</span></li><li class="in" name="org.bone.sphotoapi.oauth.OAuth"><span>OAuth</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -80,20 +79,19 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="org.bone.sphotoapi.oauth.ImgUrOAuth#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(appKey:String,appSecret:String,service:org.scribe.oauth.OAuthService,accessToken:Option[org.scribe.model.Token],refreshToken:Option[String],expireAt:java.util.Date):org.bone.sphotoapi.oauth.ImgUrOAuth"></a>
-      <a id="&lt;init&gt;:ImgUrOAuth"></a>
+              <ol><li name="org.bone.sphotoapi.oauth.FlickrOAuth#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(appKey:String,appSecret:String,service:org.scribe.oauth.OAuthService,accessToken:Option[org.scribe.model.Token],refreshToken:Option[String],expireAt:java.util.Date):org.bone.sphotoapi.oauth.FlickrOAuth"></a>
+      <a id="&lt;init&gt;:FlickrOAuth"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ImgUrOAuth</span><span class="params">(<span name="appKey">appKey: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="appSecret">appSecret: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="service">service: <span class="extype" name="org.scribe.oauth.OAuthService">OAuthService</span></span>, <span name="accessToken">accessToken: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="org.scribe.model.Token">Token</span>] = <span class="symbol">scala.None</span></span>, <span name="refreshToken">refreshToken: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">scala.None</span></span>, <span name="expireAt">expireAt: <span class="extype" name="java.util.Date">Date</span> = <span class="symbol">new java.util.Date()</span></span>)</span>
+        <span class="name">FlickrOAuth</span><span class="params">(<span name="appKey">appKey: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="appSecret">appSecret: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="service">service: <span class="extype" name="org.scribe.oauth.OAuthService">OAuthService</span></span>, <span name="accessToken">accessToken: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="org.scribe.model.Token">Token</span>] = <span class="symbol">scala.None</span></span>, <span name="refreshToken">refreshToken: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">scala.None</span></span>, <span name="expireAt">expireAt: <span class="extype" name="java.util.Date">Date</span> = <span class="symbol">new java.util.Date()</span></span>)</span>
       </span>
       </h4>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">appKey</dt><dd class="cmt"><p>OAuth Cleint App Key</p></dd><dt class="param">appSecret</dt><dd class="cmt"><p>OAuth Client App Secret</p></dd><dt class="param">service</dt><dd class="cmt"><p>Scribe OAuth service</p></dd><dt class="param">accessToken</dt><dd class="cmt"><p>The access token from ImgUr API</p></dd><dt class="param">refreshToken</dt><dd class="cmt"><p>The refresh token from ImgUr API</p></dd><dt class="param">expireAt</dt><dd class="cmt"><p>When will access token will be expired.
-</p></dd></dl></div>
+      
     </li></ol>
             </div>
 
@@ -168,7 +166,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="org.bone.sphotoapi.oauth.ImgUrOAuth#accessToken" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#accessToken" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="accessToken:Option[org.scribe.model.Token]"></a>
       <a id="accessToken:Option[Token]"></a>
       <h4 class="signature">
@@ -180,8 +178,8 @@
         <span class="name">accessToken</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="org.scribe.model.Token">Token</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The access token from ImgUr API</p><div class="fullcomment"><div class="comment cmt"><p>The access token from ImgUr API</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../package.html" class="extype" name="org.bone.sphotoapi">org.bone.sphotoapi</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
-    </li><li name="org.bone.sphotoapi.oauth.ImgUrOAuth#appKey" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../package.html" class="extype" name="org.bone.sphotoapi">org.bone.sphotoapi</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.FlickrOAuth">FlickrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
+    </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#appKey" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="appKey:String"></a>
       <a id="appKey:String"></a>
       <h4 class="signature">
@@ -193,8 +191,8 @@
         <span class="name">appKey</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">OAuth Cleint App Key</p><div class="fullcomment"><div class="comment cmt"><p>OAuth Cleint App Key</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
-    </li><li name="org.bone.sphotoapi.oauth.ImgUrOAuth#appSecret" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.FlickrOAuth">FlickrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
+    </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#appSecret" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="appSecret:String"></a>
       <a id="appSecret:String"></a>
       <h4 class="signature">
@@ -206,7 +204,7 @@
         <span class="name">appSecret</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">OAuth Client App Secret</p><div class="fullcomment"><div class="comment cmt"><p>OAuth Client App Secret</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.FlickrOAuth">FlickrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -296,7 +294,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.bone.sphotoapi.oauth.ImgUrOAuth#expireAt" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#expireAt" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="expireAt:java.util.Date"></a>
       <a id="expireAt:Date"></a>
       <h4 class="signature">
@@ -308,8 +306,7 @@
         <span class="name">expireAt</span><span class="result">: <span class="extype" name="java.util.Date">Date</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">When will access token will be expired.</p><div class="fullcomment"><div class="comment cmt"><p>When will access token will be expired.
-</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../package.html" class="extype" name="org.bone.sphotoapi">org.bone.sphotoapi</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../package.html" class="extype" name="org.bone.sphotoapi">org.bone.sphotoapi</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.FlickrOAuth">FlickrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -465,7 +462,7 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.bone.sphotoapi.oauth.ImgUrOAuth#prefixURL" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#prefixURL" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="prefixURL:String"></a>
       <a id="prefixURL:String"></a>
       <h4 class="signature">
@@ -477,7 +474,7 @@
         <span class="name">prefixURL</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.FlickrOAuth">FlickrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
     </li><li name="org.bone.sphotoapi.oauth.OAuth#refreshAccessToken" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="refreshAccessToken():Unit"></a>
       <a id="refreshAccessToken():Unit"></a>
@@ -493,7 +490,7 @@
       <p class="shortcomment cmt"> Update access token from refreshToken
 </p><div class="fullcomment"><div class="comment cmt"><p> Update access token from refreshToken
 </p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
-    </li><li name="org.bone.sphotoapi.oauth.ImgUrOAuth#refreshToken" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#refreshToken" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="refreshToken:Option[String]"></a>
       <a id="refreshToken:Option[String]"></a>
       <h4 class="signature">
@@ -505,8 +502,8 @@
         <span class="name">refreshToken</span><span class="result">: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
       </span>
       </h4>
-      <p class="shortcomment cmt">The refresh token from ImgUr API</p><div class="fullcomment"><div class="comment cmt"><p>The refresh token from ImgUr API</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../package.html" class="extype" name="org.bone.sphotoapi">org.bone.sphotoapi</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
-    </li><li name="org.bone.sphotoapi.oauth.ImgUrOAuth#refreshURL" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../package.html" class="extype" name="org.bone.sphotoapi">org.bone.sphotoapi</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.FlickrOAuth">FlickrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
+    </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#refreshURL" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="refreshURL:String"></a>
       <a id="refreshURL:String"></a>
       <h4 class="signature">
@@ -518,17 +515,17 @@
         <span class="name">refreshURL</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
       </span>
       </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
-    </li><li name="org.bone.sphotoapi.oauth.ImgUrOAuth#sendRequest" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="sendRequest(url:String,verb:org.scribe.model.Verb,params:(String,String)*):scala.util.Try[Either[scala.xml.Node,net.liftweb.json.JsonAST.JValue]]"></a>
-      <a id="sendRequest(String,Verb,(String,String)*):Try[Either[Node,JValue]]"></a>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.FlickrOAuth">FlickrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
+    </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#sendRequest" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="sendRequest(url:String,verb:org.scribe.model.Verb,params:(String,String)*):scala.util.Try[scala.xml.Node]"></a>
+      <a id="sendRequest(String,Verb,(String,String)*):Try[Node]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">sendRequest</span><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="verb">verb: <span class="extype" name="org.scribe.model.Verb">Verb</span></span>, <span name="params">params: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.Either">Either</span>[<span class="extype" name="scala.xml.Node">Node</span>, <span class="extype" name="net.liftweb.json.JsonAST.JValue">JValue</span>]]</span>
+        <span class="name">sendRequest</span><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="verb">verb: <span class="extype" name="org.scribe.model.Verb">Verb</span></span>, <span name="params">params: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.xml.Node">Node</span>]</span>
       </span>
       </h4>
       <p class="shortcomment cmt"> Send Request and Parse Response to JSON / XML
@@ -551,7 +548,7 @@
 </p><div class="fullcomment"><div class="comment cmt"><p> Send Request and Get Response from Server
 </p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>The API endpoint URL</p></dd><dt class="param">verb</dt><dd class="cmt"><p>The HTTP request method</p></dd><dt class="param">params</dt><dd class="cmt"><p>The parameters to API method</p></dd><dt>returns</dt><dd class="cmt"><p>Try[(responseCode, contentType, responseBody)]
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
-    </li><li name="org.bone.sphotoapi.oauth.ImgUrOAuth#service" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
+    </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#service" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="service:org.scribe.oauth.OAuthService"></a>
       <a id="service:OAuthService"></a>
       <h4 class="signature">
@@ -563,7 +560,7 @@
         <span class="name">service</span><span class="result">: <span class="extype" name="org.scribe.oauth.OAuthService">OAuthService</span></span>
       </span>
       </h4>
-      <p class="shortcomment cmt">Scribe OAuth service</p><div class="fullcomment"><div class="comment cmt"><p>Scribe OAuth service</p></div><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../package.html" class="extype" name="org.bone.sphotoapi">org.bone.sphotoapi</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.ImgUrOAuth">ImgUrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
+      <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected[<a href="../package.html" class="extype" name="org.bone.sphotoapi">org.bone.sphotoapi</a>] </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.FlickrOAuth">FlickrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

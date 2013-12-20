@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
         <head>
-          <title>PicasaWebPhoto - org.bone.sphotoapi.parser.PicasaWebPhoto</title>
-          <meta name="description" content="PicasaWebPhoto - org.bone.sphotoapi.parser.PicasaWebPhoto" />
-          <meta name="keywords" content="PicasaWebPhoto org.bone.sphotoapi.parser.PicasaWebPhoto" />
+          <title>GPSPoint - org.bone.sphotoapi.model.GPSPoint</title>
+          <meta name="description" content="GPSPoint - org.bone.sphotoapi.model.GPSPoint" />
+          <meta name="keywords" content="GPSPoint org.bone.sphotoapi.model.GPSPoint" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -12,7 +12,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../../index.html';
-            var hash = 'org.bone.sphotoapi.parser.PicasaWebPhoto$';
+            var hash = 'org.bone.sphotoapi.model.GPSPoint';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -22,26 +22,26 @@
    	  </script>
     
         </head>
-        <body class="value">
+        <body class="type">
       <div id="definition">
-        <img src="../../../../lib/object_big.png" />
-        <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.bone">bone</a>.<a href="../package.html" class="extype" name="org.bone.sphotoapi">sphotoapi</a>.<a href="package.html" class="extype" name="org.bone.sphotoapi.parser">parser</a></p>
-        <h1>PicasaWebPhoto</h1>
+        <img src="../../../../lib/class_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.bone">bone</a>.<a href="../package.html" class="extype" name="org.bone.sphotoapi">sphotoapi</a>.<a href="package.html" class="extype" name="org.bone.sphotoapi.model">model</a></p>
+        <h1>GPSPoint</h1>
       </div>
 
       <h4 id="signature" class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">object</span>
+        <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">PicasaWebPhoto</span>
+        <span class="name">GPSPoint</span><span class="params">(<span name="latitude">latitude: <span class="extype" name="scala.Double">Double</span></span>, <span name="longitude">longitude: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -59,7 +59,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="org.bone.sphotoapi.parser.PicasaWebPhoto"><span>PicasaWebPhoto</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="org.bone.sphotoapi.model.GPSPoint"><span>GPSPoint</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -77,7 +77,23 @@
 
       <div id="template">
         <div id="allMembers">
-        
+        <div id="constructors" class="members">
+              <h3>Instance Constructors</h3>
+              <ol><li name="org.bone.sphotoapi.model.GPSPoint#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(latitude:Double,longitude:Double):org.bone.sphotoapi.model.GPSPoint"></a>
+      <a id="&lt;init&gt;:GPSPoint"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">new</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GPSPoint</span><span class="params">(<span name="latitude">latitude: <span class="extype" name="scala.Double">Double</span></span>, <span name="longitude">longitude: <span class="extype" name="scala.Double">Double</span></span>)</span>
+      </span>
+      </h4>
+      
+    </li></ol>
+            </div>
 
         
 
@@ -150,19 +166,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
-    </li><li name="org.bone.sphotoapi.parser.PicasaWebPhoto#apply" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="apply(item:scala.xml.Node):org.bone.sphotoapi.model.Photo"></a>
-      <a id="apply(Node):Photo"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">apply</span><span class="params">(<span name="item">item: <span class="extype" name="scala.xml.Node">Node</span></span>)</span><span class="result">: <a href="../model/Photo.html" class="extype" name="org.bone.sphotoapi.model.Photo">Photo</a></span>
-      </span>
-      </h4>
-      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -195,19 +198,6 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.bone.sphotoapi.parser.PicasaWebPhoto#dateFormatter" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="dateFormatter:java.text.SimpleDateFormat"></a>
-      <a id="dateFormatter:SimpleDateFormat"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">dateFormatter</span><span class="result">: <span class="extype" name="java.text.SimpleDateFormat">SimpleDateFormat</span></span>
-      </span>
-      </h4>
-      
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -221,19 +211,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#equals" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="equals(x$1:Any):Boolean"></a>
-      <a id="equals(Any):Boolean"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">equals</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -253,19 +230,6 @@
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="org.bone.sphotoapi.parser.PicasaWebPhoto#fromXML" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="fromXML(items:scala.xml.NodeSeq):List[org.bone.sphotoapi.model.Photo]"></a>
-      <a id="fromXML(NodeSeq):List[Photo]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">fromXML</span><span class="params">(<span name="items">items: <span class="extype" name="scala.xml.NodeSeq">NodeSeq</span></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[<a href="../model/Photo.html" class="extype" name="org.bone.sphotoapi.model.Photo">Photo</a>]</span>
-      </span>
-      </h4>
-      
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>
@@ -276,19 +240,6 @@
       </span>
       <span class="symbol">
         <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="scala.AnyRef#hashCode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="hashCode():Int"></a>
-      <a id="hashCode():Int"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">hashCode</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
@@ -305,6 +256,32 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="org.bone.sphotoapi.model.GPSPoint#latitude" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="latitude:Double"></a>
+      <a id="latitude:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">latitude</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4>
+      
+    </li><li name="org.bone.sphotoapi.model.GPSPoint#longitude" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="longitude:Double"></a>
+      <a id="longitude:Double"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">longitude</span><span class="result">: <span class="extype" name="scala.Double">Double</span></span>
+      </span>
+      </h4>
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -344,45 +321,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="org.bone.sphotoapi.parser.PicasaWebPhoto#parseDate" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="parseDate(dateTime:String):java.util.Date"></a>
-      <a id="parseDate(String):Date"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parseDate</span><span class="params">(<span name="dateTime">dateTime: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="java.util.Date">Date</span></span>
-      </span>
-      </h4>
-      
-    </li><li name="org.bone.sphotoapi.parser.PicasaWebPhoto#parseGPS" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="parseGPS(posInfo:String):scala.util.Try[org.bone.sphotoapi.model.GPSPoint]"></a>
-      <a id="parseGPS(String):Try[GPSPoint]"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">parseGPS</span><span class="params">(<span name="posInfo">posInfo: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<a href="../model/GPSPoint.html" class="extype" name="org.bone.sphotoapi.model.GPSPoint">GPSPoint</a>]</span>
-      </span>
-      </h4>
-      
-    </li><li name="org.bone.sphotoapi.parser.PicasaWebPhoto#prefixGPhoto" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="prefixGPhoto(nodes:scala.xml.NodeSeq):String"></a>
-      <a id="prefixGPhoto(NodeSeq):String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">prefixGPhoto</span><span class="params">(<span name="nodes">nodes: <span class="extype" name="scala.xml.NodeSeq">NodeSeq</span></span>)</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
-      </span>
-      </h4>
-      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -396,32 +334,6 @@
       </span>
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
-    </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="toString():String"></a>
-      <a id="toString():String"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toString</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.String">String</span></span>
-      </span>
-      </h4>
-      <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="org.bone.sphotoapi.parser.PicasaWebPhoto#toThumbnail" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="toThumbnail(item:scala.xml.Node):org.bone.sphotoapi.model.Thumbnail"></a>
-      <a id="toThumbnail(Node):Thumbnail"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">toThumbnail</span><span class="params">(<span name="item">item: <span class="extype" name="scala.xml.Node">Node</span></span>)</span><span class="result">: <a href="../model/Thumbnail.html" class="extype" name="org.bone.sphotoapi.model.Thumbnail">Thumbnail</a></span>
-      </span>
-      </h4>
-      
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -488,7 +400,15 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.AnyRef">
+        <div class="parent" name="scala.Serializable">
+              <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="java.io.Serializable">
+              <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="scala.Product">
+              <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
+            </div><div class="parent" name="scala.Equals">
+              <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
+            </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
               <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
