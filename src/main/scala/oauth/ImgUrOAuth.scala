@@ -50,7 +50,7 @@ class ImgUrOAuth(override val appKey: String, override val appSecret: String,
 
     def parseResponse(contentType: String, body: String) = Try {
       contentType match {
-        case "text/xml" => Left(parseXML(body))
+        case t if t.startsWith("text/xml") => Left(parseXML(body))
         case "application/json" => Right(parseJSON(body))
       }
     }
