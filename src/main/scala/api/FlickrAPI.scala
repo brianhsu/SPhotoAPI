@@ -14,6 +14,8 @@ import java.util.Date
 import net.liftweb.json.JsonParser
 import net.liftweb.json.JsonAST._
 
+case class PhotosetPage(photos: List[Photo], page: Int, totalPage: Int)
+
 /**
  *  Flickr API
  *
@@ -49,7 +51,7 @@ class FlickrAPI private(override val oauth: FlickrOAuth) extends API(oauth, "Fli
    *  @param    userID      The ID of album's owner
    *  @return               Success[List[Photo]] if everything is fine.
    */
-  def getPhotos(albumID: String): Try[List[Photo]] = Try
+  def getPhotos(albumID: String, page: Int): Try[PhotosetPage] = Try
   {
 
     val ownerID = {
@@ -61,12 +63,37 @@ class FlickrAPI private(override val oauth: FlickrOAuth) extends API(oauth, "Fli
     val params = List(
       "method" -> "flickr.photosets.getPhotos",
       "photoset_id" -> albumID,
-      "extras" -> "date_upload,date_taken,last_update,geo,url_sq, url_t, url_s, url_m, url_o"
+      "extras" -> "date_upload,date_taken,last_update,geo,url_sq, url_t, url_s, url_m, url_o",
+      "page" -> page.toString
     )
 
     oauth.sendRequest("rest", Verb.GET, params:_*).map { response =>
-      FlickrPhoto.fromXML(ownerID, albumID, response)
+      val photos = FlickrPhoto.fromXML(ownerID, albumID, response)
+      val totalPage = (response \\ "@pages").text.toInt
+
+      PhotosetPage(photos, page, totalPage)
     }.get
+
+  }
+
+
+  /**
+   *  Get Photos From Album
+   *
+   *  @param    albumID     The ID of album
+   *  @param    userID      The ID of album's owner
+   *  @return               Success[List[Photo]] if everything is fine.
+   */
+  def getPhotos(albumID: String): Try[List[Photo]] = Try
+  {
+    val firstPage = getPhotos(albumID, 1).get
+    var allPhotos = firstPage.photos
+
+    for (page <- 2 to firstPage.totalPage) {
+      allPhotos ++= getPhotos(albumID, page).get.photos
+    }
+
+    allPhotos
   }
 
 
