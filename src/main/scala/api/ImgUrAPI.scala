@@ -12,6 +12,9 @@ import org.scribe.model.Verb
 
 import scala.util.Try
 import java.util.Date
+import java.io.File
+import org.apache.commons.io.FileUtils
+import org.apache.commons.codec.binary.Base64
 
 /**
  *  ImgUr API
@@ -39,6 +42,37 @@ class ImgUrAPI private(override val oauth: ImgUrOAuth) extends API(oauth, "ImgUr
     }
 
   }
+
+  private def readImageToBase64(photo: File): String = {
+    val bytes = FileUtils.readFileToByteArray(photo)
+    val encoder = new Base64
+    encoder.encodeAsString(bytes)
+  }
+
+  /**
+   *  Get Photos From Album
+   *
+   *  @param    albumID     The ID of album
+   *  @return               Success[List[Photo]] if everything is fine.
+   */
+  override def uploadPhoto(photo: File): Try[Photo] = {
+
+    val endPoint = s"3/image"
+    val imageInBase64 = readImageToBase64(photo)
+    val params = List(
+      "image" -> imageInBase64,
+      "type" -> "base64",
+      "_format" -> "xml"
+    )
+
+    oauth.sendRequest(endPoint, Verb.POST, params:_*).map { response =>
+      val photoNode = (response.left.get \\ "data")(0)
+      ImgUrPhoto(photoNode)
+    }
+
+  }
+
+
 
   /**
    *  Get User's Album list

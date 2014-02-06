@@ -15,6 +15,7 @@ import net.liftweb.json.JsonParser
 import scala.util.Try
 import java.util.Date
 import java.net.URLEncoder
+import java.io.File
 
 abstract class API(val oauth: OAuth, val serviceName: String)
 {
@@ -40,6 +41,8 @@ abstract class API(val oauth: OAuth, val serviceName: String)
    */
   def getUserInfo(): Try[(String, String)]
 
+  def uploadPhoto(file: File): Try[Photo] = ???
+
   /**
    *  Get current refresh token of ImgUr API
    *
@@ -64,5 +67,6 @@ abstract class API(val oauth: OAuth, val serviceName: String)
    *  @return             Success[Unit] if success.
    */
   def authorize(verifyCode: String): Try[Unit] = oauth.authorize(verifyCode)
+
 }
 
