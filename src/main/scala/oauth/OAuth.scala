@@ -49,7 +49,8 @@ abstract class OAuth {
   def buildRequest(url: String, 
                    verb: Verb, 
                    getParams: Map[String, String] = Map.empty,
-                   postParams: Map[String, String] = Map.empty): OAuthRequest = 
+                   postParams: Map[String, String] = Map.empty,
+                   headers: Map[String, String] = Map.empty): OAuthRequest = 
   {
 
     val fullURL = if(url.startsWith("http")) url else prefixURL + url
@@ -57,6 +58,7 @@ abstract class OAuth {
 
     getParams.foreach { case(key, value) => request.addQuerystringParameter(key, value) }
     postParams.foreach { case(key, value) => request.addBodyParameter(key, value) }
+    headers.foreach { case(key, value) => request.addHeader(key, value) }
 
     request
   }
@@ -73,6 +75,7 @@ abstract class OAuth {
   def sendRequest_(url: String, verb: Verb, 
                    queryParams: Map[String, String] = Map.empty,
                    postParams: Map[String, String] = Map.empty,
+                   headers: Map[String, String] = Map.empty,
                    payload: Option[Array[Byte]] = None): Try[(Int, String, String)] = 
   {
     Try {
@@ -81,7 +84,7 @@ abstract class OAuth {
         refreshAccessToken()
       }
 
-      val request = buildRequest(url, verb, queryParams, postParams)
+      val request = buildRequest(url, verb, queryParams, postParams, headers)
       service.signRequest(accessToken getOrElse null, request)
       payload.foreach(request.addPayload)
       val response = request.send

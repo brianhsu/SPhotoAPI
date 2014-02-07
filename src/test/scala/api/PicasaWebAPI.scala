@@ -14,7 +14,8 @@ object PicasaWebAPIMock extends PicasaWebOAuth(null, null, null, null) with Mock
   
   override def sendRequest_(url: String, verb: Verb, 
                             getParams: Map[String, String], 
-                            postParams: Map[String, String], 
+                            postParams: Map[String, String],
+                            headers: Map[String, String],
                             payload: Option[Array[Byte]]) = 
   {
     (url, verb) match {

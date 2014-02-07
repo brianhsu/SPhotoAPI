@@ -35,6 +35,40 @@ object FlickrPhoto {
     }
   }
 
+  def apply(username: String, basicInfo: Node, sizeInfo: Node, geoInfo: Node): Photo = {
+
+    val id = (basicInfo \\ "id").text
+    val dates = basicInfo \\ "dates"
+    val origSize = (sizeInfo \\ "size").filter(node => (node \\ "@label").text == "Original")
+    val thumbnailList = (sizeInfo \\ "size").toList map { thumbnail =>
+      val url = (thumbnail \ "@source").text
+      val width = (thumbnail \ "@width").text.toInt
+      val height = (thumbnail \ "@height").text.toInt
+      new Thumbnail(url, width max height)
+    }
+
+    val geoPoint = for {
+      location <- geoInfo \\ "@location"
+      latitude <- (location \\ "@latitude")
+      longitude <- (location \\ "@longitude")
+    } yield GPSPoint(latitude.text.toDouble, longitude.text.toDouble)
+
+    new Photo(
+      id = id,
+      title = Option((basicInfo \ "title").text).filterNot(_.isEmpty),
+      timestamp = parseTakenDate((dates \ "@taken").text),
+      mimeType = "image/jpeg",
+      width = (origSize \ "@width").text.toInt,
+      height = (origSize \ "@height").text.toInt,
+      link = (basicInfo \\ "url").text,
+      imageURL = (origSize \ "@url").text,
+      thumbnails = thumbnailList,
+      lastUpdated = new Date((dates \ "@lastupdate").text.toLong * 1000L),
+      location = geoPoint.headOption
+    )
+
+  }
+
   def apply(username: String, albumID: String, item: Node): Photo = {
 
     val id = (item \ "@id").text

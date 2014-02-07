@@ -14,6 +14,8 @@ import java.util.Date
 import net.liftweb.json.JsonParser
 import net.liftweb.json.JsonAST._
 import java.io.File
+import org.apache.commons.io.FileUtils
+import java.net.URLConnection
 
 /**
  *  PicasaWeb API
@@ -46,6 +48,23 @@ class PicasaWebAPI private(override val oauth: PicasaWebOAuth) extends API(oauth
       PicasaWebPhoto.fromXML(content)
     }
 
+  }
+
+  override def uploadPhoto(photo: File): Try[Photo] = {
+    val imageData = FileUtils.readFileToByteArray(photo)
+    val response = oauth.sendRequest(
+      url = "https://picasaweb.google.com/data/feed/api/user/default/albumid/default",
+      verb = Verb.POST,
+      payload = Some(imageData),
+      headers = Map(
+        "Content-Type" -> URLConnection.guessContentTypeFromName(photo.getName()),
+        "Content-Length" -> imageData.length.toString
+      )
+    )
+
+    response.map { content =>
+      PicasaWebPhoto(content)
+    }
   }
 
   /**

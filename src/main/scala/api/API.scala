@@ -41,7 +41,9 @@ abstract class API(val oauth: OAuth, val serviceName: String)
    */
   def getUserInfo(): Try[(String, String)]
 
-  def uploadPhoto(file: File): Try[Photo] = ???
+  def getPhoto(photoID: String): Try[Photo] = ???
+
+  def uploadPhoto(file: File): Try[Photo]
 
   /**
    *  Get current refresh token of ImgUr API

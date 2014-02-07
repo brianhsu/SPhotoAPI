@@ -13,6 +13,7 @@ import scala.util.Try
 import java.util.Date
 import net.liftweb.json.JsonParser
 import net.liftweb.json.JsonAST._
+import java.io._
 
 case class PhotosetPage(photos: List[Photo], page: Int, totalPage: Int)
 
@@ -40,6 +41,72 @@ class FlickrAPI private(override val oauth: FlickrOAuth) extends API(oauth, "Fli
       this.cachedUsername = Some(username)
 
       username
+    }
+
+  }
+
+  override def uploadPhoto(photo: File): Try[Photo] = {
+    import org.apache.http.entity.mime.MultipartEntityBuilder;
+    import org.apache.http.entity.mime.content.FileBody;
+
+    val bin = new FileBody(photo)
+    val reqEntity = MultipartEntityBuilder.create().addPart("photo", bin).build
+    val contentType = reqEntity.getContentType
+    val bos = new ByteArrayOutputStream(reqEntity.getContentLength.toInt)
+    reqEntity.writeTo(bos)
+
+    val response = oauth.sendRequest(
+      url = "http://up.flickr.com/services/upload/",
+      verb = Verb.POST,
+      payload = Some(bos.toByteArray),
+      headers = Map(
+        contentType.getName -> contentType.getValue
+      )
+    )
+
+    for {
+      content <- response
+      photoID <- Try((content \\ "photoid").text)
+      photo <- getPhoto(photoID)
+    } yield photo
+
+  }
+
+  override def getPhoto(photoID: String): Try[Photo] = {
+
+    def getBasicInfo = oauth.sendRequest(
+      url = "rest", 
+      verb = Verb.GET, 
+      getParams = Map(
+        "method" -> "flickr.photos.getInfo",
+        "photo_id" -> photoID
+      )
+    )
+    
+    def getSizeInfo = oauth.sendRequest(
+      url = "rest", 
+      verb = Verb.GET, 
+      getParams = Map(
+        "method" -> "flickr.photos.getSizes",
+        "photo_id" -> photoID
+      )
+    )
+
+    def getGeoInfo = oauth.sendRequest(
+      url = "rest", 
+      verb = Verb.GET, 
+      getParams = Map(
+        "method" -> "flickr.photos.geo.getLocation",
+        "photo_id" -> photoID
+      )
+    )
+
+    for {
+      basicInfo <- getBasicInfo
+      sizeInfo <- getSizeInfo
+      geoInfo <- getGeoInfo
+    } yield {
+      FlickrPhoto(getUsername, basicInfo, sizeInfo, geoInfo)
     }
 
   }

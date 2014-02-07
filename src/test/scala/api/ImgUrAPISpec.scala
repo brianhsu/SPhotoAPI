@@ -14,7 +14,8 @@ object ImgUrAPIMock extends ImgUrOAuth(null, null, null, null) with MockOAuth {
   
   override def sendRequest_(url: String, verb: Verb, 
                             getParams: Map[String, String] = Map.empty, 
-                            postParams: Map[String, String] = Map.empty, 
+                            postParams: Map[String, String] = Map.empty,
+                            headers: Map[String, String] = Map.empty,
                             payload: Option[Array[Byte]]) = 
   {
     

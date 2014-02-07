@@ -47,6 +47,7 @@ class ImgUrOAuth(override val appKey: String, override val appSecret: String,
   def sendRequest(url: String, verb: Verb, 
                   getParams: Map[String, String] = Map.empty, 
                   postParams: Map[String, String] = Map.empty,
+                  headers: Map[String, String] = Map.empty,
                   payload: Option[Array[Byte]] = None): Try[Either[Node, JValue]] = 
   {
 
@@ -58,7 +59,7 @@ class ImgUrOAuth(override val appKey: String, override val appSecret: String,
     }
 
     for {
-      (code, contentType, body) <- sendRequest_(url, verb, getParams, postParams, payload)
+      (code, contentType, body) <- sendRequest_(url, verb, getParams, postParams, headers, payload)
       response <- parseResponse(contentType, body)
     } yield response
 
