@@ -30,10 +30,13 @@ class OAuthSpec extends FunSpec with Matchers with PrivateMethodTester {
     it("build GET request with parameter correctly") {
 
       val request = mockOAuth.buildRequest (
-        "http://localhost/get", Verb.GET,
-         "option1" -> "HelloWorld",
-         "option2" -> "Foo",
-         "option3" -> "Bar"
+        url = "http://localhost/get", 
+        verb = Verb.GET,
+        getParams = Map(
+          "option1" -> "HelloWorld",
+          "option2" -> "Foo",
+          "option3" -> "Bar"
+        )
       )
 
       request.getUrl shouldBe "http://localhost/get"
@@ -50,11 +53,14 @@ class OAuthSpec extends FunSpec with Matchers with PrivateMethodTester {
     it("build POST request with parameter correctly") {
 
       val request = mockOAuth.buildRequest (
-        "http://localhost/post", Verb.POST,
-        "option1" -> "HelloWorld",
-        "option2" -> "Foo",
-        "option3" -> "Bar",
-        "option4" -> "FooBar"
+        url = "http://localhost/post", 
+        verb = Verb.POST,
+        postParams = Map(
+          "option1" -> "HelloWorld",
+          "option2" -> "Foo",
+          "option3" -> "Bar",
+          "option4" -> "FooBar"
+        )
       )
 
       request.getUrl shouldBe "http://localhost/post"

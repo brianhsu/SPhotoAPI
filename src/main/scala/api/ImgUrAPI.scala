@@ -36,9 +36,10 @@ class ImgUrAPI private(override val oauth: ImgUrOAuth) extends API(oauth, "ImgUr
   override def getPhotos(albumID: String): Try[List[Photo]] = {
 
     val endPoint = s"3/album/$albumID/images.xml"
-
-    oauth.sendRequest(endPoint, Verb.GET).map { response =>
-      ImgUrPhoto.fromXML(response.left.get)
+    val response = oauth.sendRequest(endPoint, Verb.GET)
+    
+    response.map { content =>
+      ImgUrPhoto.fromXML(content.left.get)
     }
 
   }
@@ -58,15 +59,18 @@ class ImgUrAPI private(override val oauth: ImgUrOAuth) extends API(oauth, "ImgUr
   override def uploadPhoto(photo: File): Try[Photo] = {
 
     val endPoint = s"3/image"
-    val imageInBase64 = readImageToBase64(photo)
-    val params = List(
-      "image" -> imageInBase64,
-      "type" -> "base64",
-      "_format" -> "xml"
+    val response = oauth.sendRequest(
+      url = endPoint, 
+      verb = Verb.POST,
+      postParams = Map(
+        "image" -> readImageToBase64(photo),
+        "type" -> "base64",
+        "_format" -> "xml"
+      )
     )
-
-    oauth.sendRequest(endPoint, Verb.POST, params:_*).map { response =>
-      val photoNode = (response.left.get \\ "data")(0)
+    
+    response.map { content =>
+      val photoNode = (content.left.get \\ "data")(0)
       ImgUrPhoto(photoNode)
     }
 
@@ -109,14 +113,18 @@ class ImgUrAPI private(override val oauth: ImgUrOAuth) extends API(oauth, "ImgUr
     val params = (
       page.map("page" -> _.toString) ++ 
       perPage.map("perPage" -> _.toString)
-    ).toList
+    ).toMap
 
-    oauth.sendRequest(endPoint, Verb.GET, params: _*).map { response =>
-      ImgUrAlbum.fromXML(response.left.get)
-    }
+    val response = oauth.sendRequest(
+      url = endPoint, 
+      verb = Verb.GET, 
+      getParams = params
+    )
     
+    response.map { content =>
+      ImgUrAlbum.fromXML(content.left.get)
+    }
   }
-
 }
 
 /**

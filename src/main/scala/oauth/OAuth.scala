@@ -38,25 +38,25 @@ abstract class OAuth {
   protected[sphotoapi] var expireAt: Date
   protected[sphotoapi] val service: OAuthService
 
+
   /**
    *  Create OAuthReqeust object and attatch params to it.
    *
    *  @param    url         API Endpoint.
-   *  @param    method      HTTP method type.
+   *  @param    verb        HTTP method type.
    *  @param    params      Parameters to send.
    */
-  def buildRequest(url: String, method: Verb, 
-                   params: (String, String)*): OAuthRequest = 
+  def buildRequest(url: String, 
+                   verb: Verb, 
+                   getParams: Map[String, String] = Map.empty,
+                   postParams: Map[String, String] = Map.empty): OAuthRequest = 
   {
 
     val fullURL = if(url.startsWith("http")) url else prefixURL + url
-    val request = new OAuthRequest(method, fullURL)
+    val request = new OAuthRequest(verb, fullURL)
 
-    if (method == Verb.POST) {
-      params.foreach { case(key, value) => request.addBodyParameter(key, value) }
-    } else if (method == Verb.GET) {
-      params.foreach { case(key, value) => request.addQuerystringParameter(key, value) }
-    }
+    getParams.foreach { case(key, value) => request.addQuerystringParameter(key, value) }
+    postParams.foreach { case(key, value) => request.addBodyParameter(key, value) }
 
     request
   }
@@ -66,10 +66,14 @@ abstract class OAuth {
    *  
    *  @param    url       The API endpoint URL
    *  @param    verb      The HTTP request method
+   *  @param    payload   The payload sends with HTTP
    *  @param    params    The parameters to API method
    *  @return             Try[(responseCode, contentType, responseBody)]
    */
-  def sendRequest_(url: String, verb: Verb, params: (String, String)*): Try[(Int, String, String)] = 
+  def sendRequest_(url: String, verb: Verb, 
+                   queryParams: Map[String, String] = Map.empty,
+                   postParams: Map[String, String] = Map.empty,
+                   payload: Option[Array[Byte]] = None): Try[(Int, String, String)] = 
   {
     Try {
 
@@ -77,8 +81,9 @@ abstract class OAuth {
         refreshAccessToken()
       }
 
-      val request = buildRequest(url, verb, params: _*)
+      val request = buildRequest(url, verb, queryParams, postParams)
       service.signRequest(accessToken getOrElse null, request)
+      payload.foreach(request.addPayload)
       val response = request.send
 
       (response.getCode, response.getHeader("Content-Type"), response.getBody)
@@ -177,11 +182,14 @@ abstract class OAuth {
     if (refreshToken.isDefined) {
 
       val request = buildRequest(
-        refreshURL, Verb.POST,
-        "refresh_token" -> refreshToken.get,
-        "client_id" -> appKey,
-        "client_secret" -> appSecret,
-        "grant_type" -> "refresh_token"
+        url = refreshURL, 
+        verb = Verb.POST, 
+        postParams = Map(
+          "refresh_token" -> refreshToken.get,
+          "client_id" -> appKey,
+          "client_secret" -> appSecret,
+          "grant_type" -> "refresh_token"
+        )
       )
 
       val currentTime = System.currentTimeMillis

@@ -45,7 +45,9 @@ class ImgUrOAuth(override val appKey: String, override val appSecret: String,
    *  @return             The XML node or JSON object if successfully called API.
    */
   def sendRequest(url: String, verb: Verb, 
-                  params: (String, String)*): Try[Either[Node, JValue]] = 
+                  getParams: Map[String, String] = Map.empty, 
+                  postParams: Map[String, String] = Map.empty,
+                  payload: Option[Array[Byte]] = None): Try[Either[Node, JValue]] = 
   {
 
     def parseResponse(contentType: String, body: String) = Try {
@@ -56,7 +58,7 @@ class ImgUrOAuth(override val appKey: String, override val appSecret: String,
     }
 
     for {
-      (code, contentType, body) <- sendRequest_(url, verb, params:_*)
+      (code, contentType, body) <- sendRequest_(url, verb, getParams, postParams, payload)
       response <- parseResponse(contentType, body)
     } yield response
 

@@ -55,21 +55,33 @@ class FlickrAPI private(override val oauth: FlickrOAuth) extends API(oauth, "Fli
   {
 
     val ownerID = {
-      oauth.sendRequest("/rest/", Verb.GET, "method" -> "flickr.photosets.getInfo", "photoset_id" -> albumID).map { response =>
-        (response \\ "onwer").text
-      }.get
+
+      val response = oauth.sendRequest(
+        url = "/rest/", 
+        verb = Verb.GET, 
+        getParams = Map(
+          "method" -> "flickr.photosets.getInfo", 
+          "photoset_id" -> albumID
+        )
+      )
+      
+      response.map { content => (content \\ "onwer").text }.get
     }
    
-    val params = List(
-      "method" -> "flickr.photosets.getPhotos",
-      "photoset_id" -> albumID,
-      "extras" -> "date_upload,date_taken,last_update,geo,url_sq, url_t, url_s, url_m, url_o",
-      "page" -> page.toString
+    val response = oauth.sendRequest(
+      url = "rest", 
+      verb = Verb.GET, 
+      getParams = Map(
+        "method" -> "flickr.photosets.getPhotos",
+        "photoset_id" -> albumID,
+        "extras" -> "date_upload,date_taken,last_update,geo,url_sq, url_t, url_s, url_m, url_o",
+        "page" -> page.toString
+      )
     )
-
-    oauth.sendRequest("rest", Verb.GET, params:_*).map { response =>
-      val photos = FlickrPhoto.fromXML(ownerID, albumID, response)
-      val totalPage = (response \\ "@pages").text.toInt
+      
+    response.map { content =>
+      val photos = FlickrPhoto.fromXML(ownerID, albumID, content)
+      val totalPage = (content \\ "@pages").text.toInt
 
       PhotosetPage(photos, page, totalPage)
     }.get
@@ -105,19 +117,25 @@ class FlickrAPI private(override val oauth: FlickrOAuth) extends API(oauth, "Fli
    */
   def getAlbums(userID: String): Try[List[Album]] = {
 
-    var params = List(
+    var params = Map(
       "method" -> "flickr.photosets.getList",
       "primary_photo_extras" -> "url_m"
     )
 
     if (userID != "") {
-      params ::= ("user_id" -> userID)
+      params += ("user_id" -> userID)
     }
 
     val username = if (userID != "") userID else this.getUsername
   
-    oauth.sendRequest("rest", Verb.GET, params:_*).map { response =>
-      FlickrAlbum.fromXML(username, response)
+    val response = oauth.sendRequest(
+      url = "rest", 
+      verb = Verb.GET, 
+      getParams = params
+    )
+    
+    response.map { content =>
+      FlickrAlbum.fromXML(username, content)
     }
   }
 
@@ -132,10 +150,15 @@ class FlickrAPI private(override val oauth: FlickrOAuth) extends API(oauth, "Fli
    */
   override def getUserInfo: Try[(String, String)] = {
 
-    oauth.sendRequest("rest", Verb.GET, "method" -> "flickr.test.login").map { response =>
-      ((response \\ "@id").text, null)
-    }
-
+    val response = oauth.sendRequest(
+      url = "rest", 
+      verb = Verb.GET, 
+      getParams = Map(
+        "method" -> "flickr.test.login"
+      )
+    )
+    
+    response.map { content => ((content \\ "@id").text, null) }
   }
 
 }

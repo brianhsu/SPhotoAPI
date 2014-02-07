@@ -13,6 +13,7 @@ import scala.util.Try
 import java.util.Date
 import net.liftweb.json.JsonParser
 import net.liftweb.json.JsonAST._
+import java.io.File
 
 /**
  *  PicasaWeb API
@@ -39,9 +40,10 @@ class PicasaWebAPI private(override val oauth: PicasaWebOAuth) extends API(oauth
 
     val thumbSizeParam = thumbSize.map(_.size).mkString(",")
     val endPoint = s"user/$userID/albumid/$albumID?imgmax=$imageMaxSize&thumbsize=$thumbSizeParam"
-
-    oauth.sendRequest(endPoint, Verb.GET).map { response =>
-      PicasaWebPhoto.fromXML(response)
+    val response = oauth.sendRequest(endPoint, Verb.GET)
+    
+    response.map { content =>
+      PicasaWebPhoto.fromXML(content)
     }
 
   }
@@ -55,9 +57,10 @@ class PicasaWebAPI private(override val oauth: PicasaWebOAuth) extends API(oauth
   def getAlbums(userID: String = "default"): Try[List[Album]] = {
 
     val endPoint = s"user/$userID"
-
-    oauth.sendRequest(endPoint, Verb.GET).map { response =>
-      PicasaWebAlbum.fromXML(response)
+    val response = oauth.sendRequest(endPoint, Verb.GET)
+    
+    response.map { content =>
+      PicasaWebAlbum.fromXML(content)
     }
   }
 

@@ -12,8 +12,11 @@ import scala.util.Failure
 
 object PicasaWebAPIMock extends PicasaWebOAuth(null, null, null, null) with MockOAuth {
   
-  override def sendRequest_(url: String, verb: Verb, params: (String, String)*) = {
-    
+  override def sendRequest_(url: String, verb: Verb, 
+                            getParams: Map[String, String], 
+                            postParams: Map[String, String], 
+                            payload: Option[Array[Byte]]) = 
+  {
     (url, verb) match {
       case ("user/1234", Verb.GET) => Success((200, "text/xml", albumsXML.toString))
       case ("user/default/albumid/5678?imgmax=d&thumbsize=200u,320u,640u,720u,1024u", Verb.GET) => Success((200, "text/xml", photosXML.toString))
