@@ -235,20 +235,19 @@
 </p></div><dl class="paramcmts block"><dt class="param">verifyCode</dt><dd class="cmt"><p>The pin / code returned by ImgUr</p></dd><dt>returns</dt><dd class="cmt"><p>Success[Unit] if success.
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
     </li><li name="org.bone.sphotoapi.oauth.OAuth#buildRequest" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="buildRequest(url:String,method:org.scribe.model.Verb,params:(String,String)*):org.scribe.model.OAuthRequest"></a>
-      <a id="buildRequest(String,Verb,(String,String)*):OAuthRequest"></a>
+      <a id="buildRequest(url:String,verb:org.scribe.model.Verb,getParams:Map[String,String],postParams:Map[String,String],headers:Map[String,String]):org.scribe.model.OAuthRequest"></a>
+      <a id="buildRequest(String,Verb,Map[String,String],Map[String,String],Map[String,String]):OAuthRequest"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">buildRequest</span><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="method">method: <span class="extype" name="org.scribe.model.Verb">Verb</span></span>, <span name="params">params: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <span class="extype" name="org.scribe.model.OAuthRequest">OAuthRequest</span></span>
+        <span class="name">buildRequest</span><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="verb">verb: <span class="extype" name="org.scribe.model.Verb">Verb</span></span>, <span name="getParams">getParams: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Map.empty</span></span>, <span name="postParams">postParams: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Map.empty</span></span>, <span name="headers">headers: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Map.empty</span></span>)</span><span class="result">: <span class="extype" name="org.scribe.model.OAuthRequest">OAuthRequest</span></span>
       </span>
       </h4>
       <p class="shortcomment cmt"> Create OAuthReqeust object and attatch params to it.</p><div class="fullcomment"><div class="comment cmt"><p> Create OAuthReqeust object and attatch params to it.
-</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>API Endpoint.</p></dd><dt class="param">method</dt><dd class="cmt"><p>HTTP method type.</p></dd><dt class="param">params</dt><dd class="cmt"><p>Parameters to send.
-</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>API Endpoint.</p></dd><dt class="param">verb</dt><dd class="cmt"><p>HTTP method type.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -517,36 +516,36 @@
       </h4>
       <div class="fullcomment"><dl class="attributes block"> <dt>Attributes</dt><dd>protected </dd><dt>Definition Classes</dt><dd><a href="" class="extype" name="org.bone.sphotoapi.oauth.FlickrOAuth">FlickrOAuth</a> → <a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
     </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#sendRequest" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="sendRequest(url:String,verb:org.scribe.model.Verb,params:(String,String)*):scala.util.Try[scala.xml.Node]"></a>
-      <a id="sendRequest(String,Verb,(String,String)*):Try[Node]"></a>
+      <a id="sendRequest(url:String,verb:org.scribe.model.Verb,getParams:Map[String,String],postParams:Map[String,String],headers:Map[String,String],payload:Option[Array[Byte]]):scala.util.Try[scala.xml.Node]"></a>
+      <a id="sendRequest(String,Verb,Map[String,String],Map[String,String],Map[String,String],Option[Array[Byte]]):Try[Node]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">sendRequest</span><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="verb">verb: <span class="extype" name="org.scribe.model.Verb">Verb</span></span>, <span name="params">params: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.xml.Node">Node</span>]</span>
+        <span class="name">sendRequest</span><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="verb">verb: <span class="extype" name="org.scribe.model.Verb">Verb</span></span>, <span name="getParams">getParams: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Map.empty</span></span>, <span name="postParams">postParams: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Map.empty</span></span>, <span name="headers">headers: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Map.empty</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]] = <span class="symbol">None</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[<span class="extype" name="scala.xml.Node">Node</span>]</span>
       </span>
       </h4>
       <p class="shortcomment cmt"> Send Request and Parse Response to JSON / XML
 </p><div class="fullcomment"><div class="comment cmt"><p> Send Request and Parse Response to JSON / XML
-</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>The API endpoint URL</p></dd><dt class="param">verb</dt><dd class="cmt"><p>The HTTP request method</p></dd><dt class="param">params</dt><dd class="cmt"><p>The parameters to API method</p></dd><dt>returns</dt><dd class="cmt"><p>The XML node or JSON object if successfully called API.
+</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>The API endpoint URL</p></dd><dt class="param">verb</dt><dd class="cmt"><p>The HTTP request method</p></dd><dt>returns</dt><dd class="cmt"><p>The XML node or JSON object if successfully called API.
 </p></dd></dl></div>
     </li><li name="org.bone.sphotoapi.oauth.OAuth#sendRequest_" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="sendRequest_(url:String,verb:org.scribe.model.Verb,params:(String,String)*):scala.util.Try[(Int,String,String)]"></a>
-      <a id="sendRequest_(String,Verb,(String,String)*):Try[(Int,String,String)]"></a>
+      <a id="sendRequest_(url:String,verb:org.scribe.model.Verb,queryParams:Map[String,String],postParams:Map[String,String],headers:Map[String,String],payload:Option[Array[Byte]]):scala.util.Try[(Int,String,String)]"></a>
+      <a id="sendRequest_(String,Verb,Map[String,String],Map[String,String],Map[String,String],Option[Array[Byte]]):Try[(Int,String,String)]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">sendRequest_</span><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="verb">verb: <span class="extype" name="org.scribe.model.Verb">Verb</span></span>, <span name="params">params: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)*</span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[(<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)]</span>
+        <span class="name">sendRequest_</span><span class="params">(<span name="url">url: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="verb">verb: <span class="extype" name="org.scribe.model.Verb">Verb</span></span>, <span name="queryParams">queryParams: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Map.empty</span></span>, <span name="postParams">postParams: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Map.empty</span></span>, <span name="headers">headers: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Map.empty</span></span>, <span name="payload">payload: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Array">Array</span>[<span class="extype" name="scala.Byte">Byte</span>]] = <span class="symbol">None</span></span>)</span><span class="result">: <span class="extype" name="scala.util.Try">Try</span>[(<span class="extype" name="scala.Int">Int</span>, <span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)]</span>
       </span>
       </h4>
       <p class="shortcomment cmt"> Send Request and Get Response from Server
 </p><div class="fullcomment"><div class="comment cmt"><p> Send Request and Get Response from Server
-</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>The API endpoint URL</p></dd><dt class="param">verb</dt><dd class="cmt"><p>The HTTP request method</p></dd><dt class="param">params</dt><dd class="cmt"><p>The parameters to API method</p></dd><dt>returns</dt><dd class="cmt"><p>Try[(responseCode, contentType, responseBody)]
+</p></div><dl class="paramcmts block"><dt class="param">url</dt><dd class="cmt"><p>The API endpoint URL</p></dd><dt class="param">verb</dt><dd class="cmt"><p>The HTTP request method</p></dd><dt class="param">payload</dt><dd class="cmt"><p>The payload sends with HTTP</p></dd><dt>returns</dt><dd class="cmt"><p>Try[(responseCode, contentType, responseBody)]
 </p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="OAuth.html" class="extype" name="org.bone.sphotoapi.oauth.OAuth">OAuth</a></dd></dl></div>
     </li><li name="org.bone.sphotoapi.oauth.FlickrOAuth#service" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="service:org.scribe.oauth.OAuthService"></a>
