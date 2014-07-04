@@ -56,7 +56,7 @@ class FlickrAPI private(override val oauth: FlickrOAuth) extends API(oauth, "Fli
     reqEntity.writeTo(bos)
 
     val response = oauth.sendRequest(
-      url = "http://up.flickr.com/services/upload/",
+      url = "https://up.flickr.com/services/upload/",
       verb = Verb.POST,
       payload = Some(bos.toByteArray),
       headers = Map(

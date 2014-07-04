@@ -17,8 +17,8 @@ class FlickrOAuth(override val appKey: String, override val appSecret: String,
                   override protected[sphotoapi] var expireAt: Date = new Date) extends OAuth
 {
 
-  protected val refreshURL = "http://api.flickr.com/services/rest/refresh"
-  protected val prefixURL = "http://api.flickr.com/services/"
+  protected val refreshURL = "https://api.flickr.com/services/rest/refresh"
+  protected val prefixURL = "https://api.flickr.com/services/"
 
   /**
    *  Send Request and Parse Response to JSON / XML
